@@ -17,6 +17,7 @@ html,body{height:100%;margin:0;background:var(--bg);overflow:hidden;font-family:
 .ray{position:absolute;right:-12%;width:75%;height:46px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,#a9c4ff44 65%,#cfe0ff77);filter:blur(9px)}
 .r1{top:16%;transform:rotate(-18deg)}.r2{top:30%;transform:rotate(-11deg);opacity:.6}.r3{top:6%;transform:rotate(-24deg);opacity:.5}
 .cv,.cv canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cv{transition:opacity .45s ease-out}
 .vg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 42%,#000c 100%)}
 .hud{position:absolute;inset:0;pointer-events:none;font-weight:600}
 .dot{position:absolute;left:22px;top:50%;width:7px;height:7px;border:1px solid #35e0ffbb;border-radius:50%}
@@ -92,7 +93,8 @@ const Word=({t,cls})=>{const L=14;return h("div",{className:"word "+cls},
 const BITS=[["27%","23%","bc"],["28.5%","30%","SYS.INIT // 0x4F2A\nNODE 07 · LINK OK"],["65%","21%","F7\n▮▮▯▮ 0110"],["22%","66%","SCAN 88%\n░░▒▒▓▓█"],["68%","69%","GRID 12x12\nX 0442 Y 0910"]];
 
 function App(){
- const [phase,setPhase]=useState("loading"),[pct,setPct]=useState(0);
+ const [phase,setPhase]=useState("loading");
+ const glowRef=useRef(null),barRef=useRef(null),pctRef=useRef(null),statusRef=useRef(null);
  const S=useRef({phase:"loading",prog:0,burst:0,age:0,mx:0,my:0}),mount=useRef(null);
 
  useEffect(()=>{
@@ -136,7 +138,7 @@ function App(){
   const ev=[];for(let a=0;a<6;a++){const q=a/6*6.2832,x=Math.cos(q)*TR,y=Math.sin(q)*TR;ev.push(x,y,12,x,y,12+K*3.6)}
   const eg=new THREE.BufferGeometry();eg.setAttribute("position",new THREE.Float32BufferAttribute(ev,3));
   const edge=new THREE.LineSegments(eg,new THREE.LineBasicMaterial({color:c1,transparent:true,opacity:.35,blending:THREE.AdditiveBlending,depthWrite:false}));tun.add(edge);
-  const WN=520,wp=new Float32Array(WN*6),wc=new Float32Array(WN*6);
+  const WN=compact?260:520,wp=new Float32Array(WN*6),wc=new Float32Array(WN*6);
   for(let j=0;j<WN;j++){const q=rnd()*6.2832,rr=.8+rnd()*10,x=Math.cos(q)*rr,y=Math.sin(q)*rr,z=rnd()*125,ln=1.5+rnd()*3.5,c=pal[(rnd()*pal.length)|0],b=.35+rnd()*.65;
    wp.set([x,y,z,x,y,z+ln],j*6);wc.set([c.r*b,c.g*b,c.b*b,0,0,0],j*6)}
   const wg=new THREE.BufferGeometry();wg.setAttribute("position",new THREE.BufferAttribute(wp,3));wg.setAttribute("color",new THREE.BufferAttribute(wc,3));
@@ -176,11 +178,20 @@ function App(){
  },[]);
 
  useEffect(()=>{
-  const s=S.current;s.phase="loading";s.prog=0;s.burst=0;s.age=0;setPhase("loading");setPct(0);
-  let raf,tm;const t0=performance.now();
+  const s=S.current;s.phase="loading";s.prog=0;s.burst=0;s.age=0;setPhase("loading");
+  let raf,tm,lastPct=-1;const t0=performance.now();
   const tick=n=>{
-   const t=Math.min((n-t0)/2500,1),e=Math.pow(t,1.5);
-   s.prog=e;setPct(Math.round(t*100));
+   const t=Math.min((n-t0)/2500,1),e=t*t*t*(t*(t*6-15)+10);
+   s.prog=e;
+   // Keep per-frame motion outside React reconciliation.
+   if(glowRef.current){glowRef.current.style.transform="translate(-50%,-50%) scale("+((5+Math.pow(e,4)*75)/80)+")";glowRef.current.style.opacity=.25+.75*e*e}
+   if(barRef.current)barRef.current.style.transform="scaleX("+t+")";
+   const pct=Math.round(t*100);
+   if(pct!==lastPct){
+    lastPct=pct;
+    if(pctRef.current)pctRef.current.textContent=String(pct).padStart(3,"0")+"%";
+    if(statusRef.current){statusRef.current.textContent=STAGES[Math.min(4,Math.floor(pct/21))];statusRef.current.className="sub"+(pct>=84?" ok":"")}
+   }
    if(t<1)raf=requestAnimationFrame(tick);
    else{s.phase="burst";setPhase("burst");tm=setTimeout(()=>setPhase("welcome"),1000)}
   };
@@ -204,8 +215,8 @@ function App(){
   W&&h("div",{className:"stage",key:"s"},h(Word,{t:CFG.left,cls:"wl"}),h(Word,{t:CFG.right,cls:"wr"})),
   h("div",{className:"hud"},
    h("div",{className:"vl"}),h("div",{className:"dot"}),h("div",{className:"cr bl"}),h("div",{className:"cr br"})),
-  L&&h("div",{className:"pg",key:"pg",style:{transform:"translate(-50%,-50%) scale("+((5+Math.pow(pct/100,4)*75)/80)+")",opacity:.25+.75*Math.pow(pct/100,2)}}),
-  L&&h("div",{className:"ld",key:"l"},h("p",{className:"sub"+(pct>=84?" ok":"")},STAGES[Math.min(4,Math.floor(pct/21))]),h("div",{className:"bar"},h("b",{style:{transform:"scaleX("+(pct/100)+")"}})),h("div",{className:"pct"},String(pct).padStart(3,"0")+"%")));
+  L&&h("div",{ref:glowRef,className:"pg",key:"pg",style:{transform:"translate(-50%,-50%) scale(0.0625)",opacity:.25}}),
+  L&&h("div",{className:"ld",key:"l"},h("p",{ref:statusRef,className:"sub"},STAGES[0]),h("div",{className:"bar"},h("b",{ref:barRef,style:{transform:"scaleX(0)"}})),h("div",{ref:pctRef,className:"pct"},"000%")));
 }
 ReactDOM.createRoot(document.getElementById("root")).render(h(App));
 </script>

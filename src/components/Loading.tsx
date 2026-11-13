@@ -3,7 +3,7 @@ import "./styles/Loading.css";
 import { useLoading } from "../context/useLoading";
 
 const introUrl =
-  "/Welcome%20To%20My%20Portfolio%20%E2%80%93%203D%20Intro.html?v=3";
+  "/Welcome%20To%20My%20Portfolio%20%E2%80%93%203D%20Intro.html?v=4";
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
