@@ -1,25 +1,17 @@
 # My Portfolio Website - Overview 🚀
 
-This repository contains the open-source version of my personal portfolio website.  
-Feel free to explore the code and use it for learning and inspiration.
+This repository contains the source code for my personal portfolio website.
+It is publicly viewable but is not open source.
 
 ---
 
 ## ⚠️ Usage Notice
 
-This project is shared for learning purposes only.
+Viewing this project does not grant permission to copy, reuse, modify, or
+redistribute its original code, design, or content.
 
-Please do NOT:
-- Clone or replicate the full website or design
-- Repost it with minor content changes
-- Use this project for commercial/client work
-- Create tutorials or content using this exact project
-
-If you use parts of the code, you must provide proper credit linking back to the original repository.
-
-Build your own version — don’t just copy.
-
-— Moncy Yohannan
+All rights are reserved by Prince Rajak, except for third-party components
+that remain subject to their own licenses. See the [LICENSE](./LICENSE) file.
 
 ---
 
@@ -41,15 +33,16 @@ React • TypeScript • GSAP • Three.js • WebGL • HTML • CSS • JavaSc
 
 ## 🎨 Assets Usage
 
-Some 3D assets included in this repository are free to use for learning purposes.
-
-However:
+Original assets included in this repository are covered by the LICENSE and are
+not available for reuse without permission. Third-party assets remain subject
+to their own licenses; check those terms before using them.
 
 - The original 3D avatar used on my live portfolio is NOT included in this repository
 - That avatar is a custom asset created over ~1 month
 - It is not open source and not available for reuse
 
-Any usage, extraction, or redistribution of that avatar from my live website is strictly prohibited.
+Any usage, extraction, or redistribution of that avatar from my live website is
+strictly prohibited.
 
 ---
 
@@ -59,7 +52,5 @@ Any usage, extraction, or redistribution of that avatar from my live website is 
 
 ## 📄 License
 
-This project is licensed under the Personal Portfolio License (PPL) v1.0.
-
-See the LICENSE file for full details
+All rights reserved. See the [LICENSE](./LICENSE) file for details.
 
