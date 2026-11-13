@@ -17,7 +17,7 @@ const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
   const hoverDivRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef(new THREE.Scene());
-  const { isLoading, setIsLoading, setLoading } = useLoading();
+  const { isLoading, setLoading } = useLoading();
   const isLoadingRef = useRef(isLoading);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Scene = () => {
       antialias: true,
     });
     renderer.setSize(container.width, container.height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
     canvasElement.innerHTML = "";
@@ -69,6 +69,7 @@ const Scene = () => {
       }
 
       introPlayed = true;
+      clock.start();
       introAnimation();
     };
     const onIntroDismissed = () => {
@@ -90,7 +91,6 @@ const Scene = () => {
 
       if (!gltf) {
         setLoading(100);
-        setIsLoading(false);
         return;
       }
 
@@ -180,7 +180,7 @@ const Scene = () => {
         );
         light.setPointLight(screenLight);
       }
-      const delta = clock.getDelta();
+      const delta = Math.min(clock.getDelta(), 0.05);
       if (mixer) {
         mixer.update(delta);
       }
@@ -204,7 +204,7 @@ const Scene = () => {
         canvasElement.innerHTML = "";
       }
     };
-  }, [setIsLoading, setLoading]);
+  }, [setLoading]);
 
   return (
     <>
