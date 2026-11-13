@@ -42,7 +42,7 @@ const Scene = () => {
       antialias: true,
     });
     renderer.setSize(container.width, container.height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
     canvasElement.innerHTML = "";
@@ -69,6 +69,7 @@ const Scene = () => {
       }
 
       introPlayed = true;
+      clock.start();
       introAnimation();
     };
     const onIntroDismissed = () => {
@@ -180,7 +181,7 @@ const Scene = () => {
         );
         light.setPointLight(screenLight);
       }
-      const delta = clock.getDelta();
+      const delta = Math.min(clock.getDelta(), 0.05);
       if (mixer) {
         mixer.update(delta);
       }
