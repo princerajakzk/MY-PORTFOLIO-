@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome To My Portfolio – 3D Intro</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#03040b;--c1:#35e0ff;--c2:#a855f7}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);overflow:hidden;font-family:Montserrat,system-ui,sans-serif;color:#d6ecff}
+#root{position:fixed;inset:0;overflow:hidden}
+.bg{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse 55% 60% at 50% 50%,#22388a66,#0a1030 50%,var(--bg) 85%)}
+.pn{position:absolute;top:13%;width:25%;height:68%;filter:blur(3.5px);opacity:.55;border:2px solid #7f98c855;background:repeating-linear-gradient(0deg,#9fb8e022 0 2px,transparent 2px 24px),linear-gradient(#101a3c,#070b1c)}
+.pn::before{content:"";position:absolute;inset:8% 10% auto;height:16%;background:#8aa4d444;box-shadow:0 70px 0 #8aa4d422,0 140px 0 #8aa4d433,0 210px 0 #8aa4d422}
+.pl{left:2%;transform:perspective(800px) rotateY(34deg)}.pr{right:2%;transform:perspective(800px) rotateY(-34deg)}
+.ray{position:absolute;right:-12%;width:75%;height:46px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,#a9c4ff44 65%,#cfe0ff77);filter:blur(9px)}
+.r1{top:16%;transform:rotate(-18deg)}.r2{top:30%;transform:rotate(-11deg);opacity:.6}.r3{top:6%;transform:rotate(-24deg);opacity:.5}
+.cv,.cv canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.vg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 42%,#000c 100%)}
+.hud{position:absolute;inset:0;pointer-events:none;font-weight:600}
+.dot{position:absolute;left:22px;top:50%;width:7px;height:7px;border:1px solid #35e0ffbb;border-radius:50%}
+.vl{position:absolute;left:25px;top:28%;height:22%;width:1px;background:#35e0ff33}
+.cr{position:absolute;border:1px solid #35e0ff55}
+.bl{left:16px;bottom:16px;width:64px;height:64px;border-right:0;border-top:0}
+.br{right:16px;bottom:16px;width:56px;height:26vh;border-left:0;border-top:0}
+.ld{position:absolute;left:0;right:0;bottom:12%;display:flex;flex-direction:column;align-items:center;text-align:center;pointer-events:none}
+.pct{font:700 12px ui-monospace,Menlo,monospace;color:var(--c1);letter-spacing:.2em;margin-top:8px}
+.bar{width:min(360px,70vw);height:2px;background:#14203a;margin-top:14px}
+.bar b{display:block;height:100%;background:linear-gradient(90deg,var(--c1),var(--c2));box-shadow:0 0 12px var(--c1)}
+.sub{margin:0;font-size:clamp(11px,1.4vw,15px);font-weight:700;letter-spacing:.32em;color:#cfe6ff;text-shadow:0 0 10px var(--c1)}
+.sub.ok{color:#7dffb0;text-shadow:0 0 12px #3dff8a}
+.pg{position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,#fff 0%,#9af2ff 18%,#35e0ff66 45%,transparent 70%)}
+.core{position:absolute;left:50%;top:50%;width:min(34vw,62vh);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;animation:pop 1.3s cubic-bezier(.2,.9,.2,1) both}
+.ring{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 5px #35e0ff)}
+.rt{transform-box:fill-box;transform-origin:center}
+.a{animation:sp 40s linear infinite}.b{animation:sp 22s linear infinite reverse}.c{animation:sp 14s linear infinite}.d{animation:sp 9s linear infinite reverse}
+.cc{position:absolute;inset:0;display:grid;place-items:center}.logo{width:36%;filter:drop-shadow(0 0 12px #35e0ff)}
+.stage{position:absolute;inset:0;display:grid;grid-template-columns:1fr var(--gap) 1fr;align-items:center;perspective:900px;pointer-events:none;--gap:11vw}
+.word{position:relative;transform-style:preserve-3d;white-space:nowrap;font:800 7.3vw/1 "Barlow Condensed","Arial Narrow",Impact,sans-serif;letter-spacing:.012em;will-change:transform;
+ transform:rotateY(var(--ry)) scaleY(1.28);animation:fly 1.5s cubic-bezier(.16,.9,.2,1) both}
+.wl{grid-column:1;grid-row:1;justify-self:end;--ry:38deg;--fx:30vw}
+.wr{grid-column:3;grid-row:1;justify-self:start;--ry:-38deg;--fx:-30vw;animation-delay:.12s}
+.ly{display:block;white-space:nowrap;transform:translateZ(calc(var(--i) * -.02em))}
+.bk{position:absolute;left:0;top:0}
+.f{position:relative;-webkit-text-stroke:.025em #6fe9ff;paint-order:stroke fill;text-shadow:0 0 .07em #c8f9ff}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(.2) rotate(-90deg);opacity:0}to{transform:translate(-50%,-50%);opacity:1}}
+@keyframes fly{from{transform:translate3d(var(--fx),0,-1500px) rotateY(var(--ry)) scaleY(1.28)}to{transform:rotateY(var(--ry)) scaleY(1.28)}}
+@media (max-aspect-ratio:1/1){
+ .stage{grid-template-columns:1fr;grid-template-rows:auto var(--gap) auto;justify-items:center;--gap:46vw;perspective:700px}
+ .word{font-size:15.5vw}.wl,.wr{--ry:0deg;--fx:0vw;justify-self:center}.wl{grid-column:1;grid-row:1}.wr{grid-column:1;grid-row:3}
+ .core{width:min(72vw,50vh)}.bit,.br{display:none}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const {useState,useEffect,useRef}=React,h=React.createElement;
+// Apna text yahan badlo
+const CFG={left:"WELCOME TO",right:"MY PORTFOLIO"};
+const STAGES=["INITIALIZING CORE","LOADING ASSETS","ESTABLISHING LINK","ENTERING THE PORTAL","ACCESS GRANTED"];
+const GLOW="0 0 .22em #35e0ff,0 0 .6em #35e0ffcc,0 0 1.3em #a855f799";
+
+const Logo=()=>h("svg",{className:"logo",viewBox:"0 0 100 100"},
+ h("defs",null,h("linearGradient",{id:"lg",x1:0,y1:0,x2:1,y2:1},h("stop",{offset:"0",stopColor:"#35e0ff"}),h("stop",{offset:"1",stopColor:"#a855f7"}))),
+ h("path",{d:"M20 94 L20 20 L34 6 L62 6 Q94 6 94 35 Q94 64 62 64 L44 64 L44 94 Z M44 24 L60 24 Q72 24 72 35 Q72 46 60 46 L44 46 Z",fill:"url(#lg)",fillRule:"evenodd"}),
+ h("path",{d:"M6 84 Q52 62 96 76",stroke:"#fff",strokeWidth:4,fill:"none",strokeLinecap:"round"}));
+
+const Ring=()=>h("svg",{className:"ring",viewBox:"0 0 200 200",fill:"none",stroke:"#35e0ff"},
+ h("circle",{cx:100,cy:100,r:97,strokeWidth:.7}),
+ h("g",{className:"rt a"},h("circle",{cx:100,cy:100,r:91,strokeWidth:5,strokeDasharray:"1 4.6",opacity:.55})),
+ h("g",{className:"rt b"},h("circle",{cx:100,cy:100,r:82,strokeWidth:1.6,strokeDasharray:"46 10 8 10"})),
+ h("g",{className:"rt c"},h("circle",{cx:100,cy:100,r:72,strokeWidth:2.4,stroke:"#a855f7",strokeDasharray:"80 36"}),h("circle",{cx:100,cy:100,r:66,strokeWidth:.8,strokeDasharray:"3 5"})),
+ h("g",{className:"rt d"},h("path",{d:"M24 100A76 76 0 0 1 100 24",strokeWidth:3.2,strokeLinecap:"round"}),h("path",{d:"M176 100A76 76 0 0 1 100 176",stroke:"#a855f7",strokeWidth:3.2,strokeLinecap:"round"})),
+ h("circle",{cx:100,cy:100,r:54,strokeWidth:.6,opacity:.6}),
+ h("circle",{cx:100,cy:100,r:48,strokeWidth:9,strokeDasharray:".7 5.2",opacity:.35}));
+
+// Real 3D extruded text: stacked layers along Z
+const Word=({t,cls})=>{const L=14;return h("div",{className:"word "+cls},
+ Array.from({length:L},(_,i)=>{const k=i/(L-1);
+  return h("span",{key:i,"aria-hidden":i?true:undefined,className:"ly "+(i?"bk":"f"),
+   style:i===0?{"--i":0,color:"#fff"}:{"--i":i,color:"hsl("+(200-k*12)+" 90% "+(60-k*46)+"%)",...(i===L-1?{textShadow:GLOW}:{})}},t)}))};
+
+function App(){
+ const [phase,setPhase]=useState("loading"),[pct,setPct]=useState(0);
+ const S=useRef({phase:"loading",prog:0,burst:0,age:0,mx:0,my:0}),mount=useRef(null);
+
+ useEffect(()=>{
+  const s=S.current,el=mount.current,rnd=Math.random;
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true}),pr=Math.min(window.devicePixelRatio,1.5);
+  r.setPixelRatio(pr);el.appendChild(r.domElement);
+  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,400),grp=new THREE.Group();sc.add(grp);
+  const N=1800,M=450,RM=15;
+  const dir=new Float32Array(N*3),tr=new Float32Array(N),sr=new Float32Array(N),sp=new Float32Array(N),pos=new Float32Array(N*3),
+   col=new Float32Array(N*3),sz=new Float32Array(N),ab=new Float32Array(N),al=new Float32Array(N);
+  const pal=["#35e0ff","#35e0ff","#a855f7","#ffffff","#4f7dff"].map(c=>new THREE.Color(c));
+  for(let i=0;i<N;i++){
+   const ringP=i%3===0;let x=rnd()-.5,y=rnd()-.5,z=(rnd()-.5)*(ringP?.05:.5),l=Math.hypot(x,y,z)||1;
+   dir.set([x/l,y/l,z/l],i*3);tr[i]=ringP?2.3+rnd()*.9:1+rnd()*2.4;sr[i]=9+rnd()*9;sp[i]=.5+rnd()*1.6;
+   const c=pal[(rnd()*pal.length)|0];col.set([c.r,c.g,c.b],i*3);
+   const bk=rnd()<.07;sz[i]=bk?.3+rnd()*.35:.03+rnd()*.07;ab[i]=bk?.2:.55+rnd()*.45;
+  }
+  const geo=new THREE.BufferGeometry(),dyn=a=>new THREE.BufferAttribute(a,a.length/(a===al?1:3)).setUsage(THREE.DynamicDrawUsage);
+  geo.setAttribute("position",dyn(pos));geo.setAttribute("al",dyn(al));
+  geo.setAttribute("col",new THREE.BufferAttribute(col,3));geo.setAttribute("sz",new THREE.BufferAttribute(sz,1));
+  const mat=new THREE.ShaderMaterial({uniforms:{uS:{value:1}},transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+   vertexShader:"attribute float sz;attribute float al;attribute vec3 col;uniform float uS;varying vec3 vc;varying float va;void main(){vc=col;vec4 mv=modelViewMatrix*vec4(position,1.);va=al*smoothstep(1.,4.,-mv.z);gl_PointSize=min(sz*uS/max(-mv.z,.1),80.);gl_Position=projectionMatrix*mv;}",
+   fragmentShader:"varying vec3 vc;varying float va;void main(){float d=length(gl_PointCoord-.5)*2.;float a=pow(max(1.-d,0.),1.6)*va;gl_FragColor=vec4(vc*1.3,a);}"});
+  const pts=new THREE.Points(geo,mat);pts.frustumCulled=false;grp.add(pts);
+  // speed streaks
+  const ld=new Float32Array(M*3),lr=new Float32Array(M),ls=new Float32Array(M),lp=new Float32Array(M*6),lc=new Float32Array(M*6),lcol=[];
+  for(let j=0;j<M;j++){let x=rnd()-.5,y=rnd()-.5,z=(rnd()-.5)*.4,l=Math.hypot(x,y,z)||1;ld.set([x/l,y/l,z/l],j*3);lr[j]=.8+rnd()*2.2;ls[j]=1.5+rnd()*3.5;lcol.push(pal[(rnd()*pal.length)|0])}
+  const lg=new THREE.BufferGeometry();lg.setAttribute("position",new THREE.BufferAttribute(lp,3).setUsage(THREE.DynamicDrawUsage));lg.setAttribute("color",new THREE.BufferAttribute(lc,3).setUsage(THREE.DynamicDrawUsage));
+  const lines=new THREE.LineSegments(lg,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));lines.frustumCulled=false;grp.add(lines);
+  // loading-phase 3D rings + core
+  const c1=pal[0],c2=pal[2];
+  const rings=[[2.2,c1,.6,.2],[2.65,c2,-.4,.5],[3.1,c1,.3,-.3]].map(([rad,c,spd,tilt])=>{
+   const m=new THREE.Mesh(new THREE.TorusGeometry(rad,.014,8,140),new THREE.MeshBasicMaterial({color:c,transparent:true}));m.userData={spd,tilt};grp.add(m);return m});
+  const core=new THREE.Mesh(new THREE.IcosahedronGeometry(.9,1),new THREE.MeshBasicMaterial({color:c1,wireframe:true,transparent:true}));grp.add(core);
+  // ENTRY: hex + circle gates and warp streaks; camera flies through the tunnel into the portal
+  const tun=new THREE.Group();sc.add(tun);const gates=[],K=30,TR=3.6;
+  for(let i=0;i<K;i++){
+   const n=i%2?64:6,rr=TR*(i%2?1.12:1),p=[];for(let a=0;a<n;a++){const q=a/n*6.2832;p.push(new THREE.Vector3(Math.cos(q)*rr,Math.sin(q)*rr,0))}
+   const g=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(p),new THREE.LineBasicMaterial({color:i%3===1?c2:c1,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));
+   g.position.z=12+i*3.6;tun.add(g);gates.push(g)}
+  const ev=[];for(let a=0;a<6;a++){const q=a/6*6.2832,x=Math.cos(q)*TR,y=Math.sin(q)*TR;ev.push(x,y,12,x,y,12+K*3.6)}
+  const eg=new THREE.BufferGeometry();eg.setAttribute("position",new THREE.Float32BufferAttribute(ev,3));
+  const edge=new THREE.LineSegments(eg,new THREE.LineBasicMaterial({color:c1,transparent:true,opacity:.35,blending:THREE.AdditiveBlending,depthWrite:false}));tun.add(edge);
+  const WN=520,wp=new Float32Array(WN*6),wc=new Float32Array(WN*6);
+  for(let j=0;j<WN;j++){const q=rnd()*6.2832,rr=.8+rnd()*10,x=Math.cos(q)*rr,y=Math.sin(q)*rr,z=rnd()*125,ln=1.5+rnd()*3.5,c=pal[(rnd()*pal.length)|0],b=.35+rnd()*.65;
+   wp.set([x,y,z,x,y,z+ln],j*6);wc.set([c.r*b,c.g*b,c.b*b,0,0,0],j*6)}
+  const wg=new THREE.BufferGeometry();wg.setAttribute("position",new THREE.BufferAttribute(wp,3));wg.setAttribute("color",new THREE.BufferAttribute(wc,3));
+  const warp=new THREE.LineSegments(wg,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));warp.frustumCulled=false;tun.add(warp);
+  const size=()=>{r.setSize(window.innerWidth,window.innerHeight);cam.aspect=window.innerWidth/window.innerHeight;cam.updateProjectionMatrix();mat.uniforms.uS.value=window.innerHeight*pr*.866};
+  size();window.addEventListener("resize",size);
+  const move=e=>{s.mx=e.clientX/window.innerWidth-.5;s.my=e.clientY/window.innerHeight-.5};window.addEventListener("pointermove",move);
+  const clock=new THREE.Clock();let raf;
+  const loop=()=>{
+   raf=requestAnimationFrame(loop);const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime,ld_=s.phase==="loading";
+   if(!ld_){s.burst+=(1-s.burst)*Math.min(dt*3,1);s.age+=dt}else{s.burst=0;s.age=0}
+   const k=s.prog,a=s.age,flow=3.2*(1-Math.exp(-a*1.7))+.35*a;
+   for(let i=0;i<N;i++){
+    let R=ld_?sr[i]+(tr[i]-sr[i])*k:tr[i]+sp[i]*flow*1.8;
+    if(R>RM)R=R%RM;
+    al[i]=ab[i]*(ld_?.3+.7*k:Math.min(1,R*.5)*Math.pow(1-R/RM,.8));
+    pos[i*3]=dir[i*3]*R;pos[i*3+1]=dir[i*3+1]*R;pos[i*3+2]=dir[i*3+2]*R;
+   }
+   geo.attributes.position.needsUpdate=true;geo.attributes.al.needsUpdate=true;
+   if(s.burst>0){
+    for(let j=0;j<M;j++){
+     const R=(lr[j]+ls[j]*flow*.9)%RM,tail=Math.max(R-(.25+ls[j]*s.burst*.55),0),f=s.burst*(1-R/RM)*Math.min(1,R*.4),c=lcol[j];
+     for(let q=0;q<3;q++){lp[j*6+q]=ld[j*3+q]*R;lp[j*6+3+q]=ld[j*3+q]*tail}
+     lc[j*6]=c.r*f;lc[j*6+1]=c.g*f;lc[j*6+2]=c.b*f;lc[j*6+3]=lc[j*6+4]=lc[j*6+5]=0;
+    }
+    lg.attributes.position.needsUpdate=true;lg.attributes.color.needsUpdate=true;
+   }
+   grp.rotation.y=t*.08+s.mx*.35;grp.rotation.x=s.my*.22;
+   const vis=1-s.burst;
+   rings.forEach(m=>{m.rotation.x=1.2+t*m.userData.spd*.6+m.userData.tilt;m.rotation.y=t*m.userData.spd;m.scale.setScalar(1+s.burst*.7);m.material.opacity=.85*vis;m.visible=vis>.02});
+   core.rotation.y=t*.8;core.rotation.x=t*.5;core.scale.setScalar(1+.08*Math.sin(t*4));core.material.opacity=vis;core.visible=vis>.02;
+   cam.position.set(s.mx*.9*vis,-s.my*.6*vis,3+6*s.burst+110*(1-k));cam.lookAt(0,0,0);
+   const fov=60+(ld_?30*Math.sin(Math.PI*k):0);if(cam.fov!==fov){cam.fov=fov;cam.updateProjectionMatrix()}
+   tun.rotation.z=t*.12;tun.visible=vis>.02;gates.forEach(g=>{g.material.opacity=.9*vis});edge.material.opacity=.35*vis;warp.material.opacity=vis;
+   r.render(sc,cam);
+  };loop();
+  return()=>{cancelAnimationFrame(raf);window.removeEventListener("resize",size);window.removeEventListener("pointermove",move);r.dispose();el.removeChild(r.domElement)};
+ },[]);
+
+ useEffect(()=>{
+  const s=S.current;s.phase="loading";s.prog=0;s.burst=0;s.age=0;setPhase("loading");setPct(0);
+  let raf,tm;const t0=performance.now();
+  const tick=n=>{
+   const t=Math.min((n-t0)/2500,1),e=Math.pow(t,1.5);
+   s.prog=e;setPct(Math.round(t*100));
+   if(t<1)raf=requestAnimationFrame(tick);
+   else{s.phase="burst";setPhase("burst");tm=setTimeout(()=>setPhase("welcome"),1000)}
+  };
+  raf=requestAnimationFrame(tick);
+  return()=>{cancelAnimationFrame(raf);clearTimeout(tm)};
+ },[]);
+
+ useEffect(()=>{
+  if(phase!=="welcome")return;
+  const timer=setTimeout(()=>window.parent.postMessage("portfolio-intro-ready",window.location.origin),1700);
+  return()=>clearTimeout(timer);
+ },[phase]);
+
+ const L=phase==="loading",W=phase==="welcome";
+ return h(React.Fragment,null,
+  h("div",{className:"bg"},h("i",{className:"pn pl"}),h("i",{className:"pn pr"}),h("i",{className:"ray r1"}),h("i",{className:"ray r2"}),h("i",{className:"ray r3"})),
+  h("div",{ref:mount,className:"cv",style:{opacity:W?0:1}}),h("div",{className:"vg"}),
+  W&&h("div",{className:"core",key:"c"},h(Ring),h("div",{className:"cc"},h(Logo))),
+  W&&h("div",{className:"stage",key:"s"},h(Word,{t:CFG.left,cls:"wl"}),h(Word,{t:CFG.right,cls:"wr"})),
+  h("div",{className:"hud"},
+   h("div",{className:"vl"}),h("div",{className:"dot"}),h("div",{className:"cr bl"}),h("div",{className:"cr br"}),
+  ),
+  L&&h("div",{className:"pg",key:"pg",style:{width:(5+Math.pow(pct/100,4)*75)+"vmax",height:(5+Math.pow(pct/100,4)*75)+"vmax",opacity:.25+.75*Math.pow(pct/100,2)}}),
+  L&&h("div",{className:"ld",key:"l"},h("p",{className:"sub"+(pct>=84?" ok":"")},STAGES[Math.min(4,Math.floor(pct/21))]),h("div",{className:"bar"},h("b",{style:{width:pct+"%"}})),h("div",{className:"pct"},String(pct).padStart(3,"0")+"%")),
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
+</script>
+</body>
+</html>

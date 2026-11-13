@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="92" y1="45" x2="1105" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A2340"/>
+      <stop offset="1" stop-color="#090B12"/>
+    </linearGradient>
+    <linearGradient id="box" x1="448" y1="337" x2="814" y2="573" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6378C4"/>
+      <stop offset="1" stop-color="#34436F"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
+  <circle cx="948" cy="144" r="230" fill="#91A9FF" fill-opacity=".1"/>
+  <circle cx="205" cy="600" r="240" fill="#5674DE" fill-opacity=".1"/>
+  <path d="M600 116 826 200v174c0 143-96 213-226 267-130-54-226-124-226-267V200l226-84Z" fill="#FFFFFF" fill-opacity=".045" stroke="#9DADF2" stroke-opacity=".62" stroke-width="3"/>
+  <path d="m600 155 183 68v151c0 115-72 172-183 221-111-49-183-106-183-221V223l183-68Z" stroke="#9DADF2" stroke-opacity=".22" stroke-width="2"/>
+  <rect x="416" y="255" width="368" height="214" rx="17" fill="#E8ECF8" fill-opacity=".94"/>
+  <path d="M444 295h312" stroke="#34436F" stroke-opacity=".24" stroke-width="3"/>
+  <path d="M469 333h84v84h-84z" fill="#D5DCF2"/>
+  <path d="m489 376 17 17 31-37" stroke="#566DC3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="582" y="342" width="157" height="10" rx="5" fill="#293451" fill-opacity=".54"/>
+  <rect x="582" y="365" width="129" height="8" rx="4" fill="#293451" fill-opacity=".2"/>
+  <rect x="582" y="391" width="101" height="8" rx="4" fill="#293451" fill-opacity=".2"/>
+  <path d="M416 446h368l-27 89H443l-27-89Z" fill="url(#box)"/>
+  <path d="M443 535h314" stroke="#A9B6EA" stroke-opacity=".7" stroke-width="3"/>
+  <path d="M481 446h238l-42 29H523l-42-29Z" fill="#151B2D"/>
+  <path d="M554 480h92" stroke="#A9B6EA" stroke-opacity=".55" stroke-width="3"/>
+  <circle cx="600" cy="565" r="11" fill="#86E0C0"/>
+  <text x="600" y="622" fill="#FFFFFF" fill-opacity=".75" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" letter-spacing="5">CAST YOUR VOTE</text>
+</svg>

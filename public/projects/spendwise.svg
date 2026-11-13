@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="40" x2="1084" y2="682" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17322A"/>
+      <stop offset="1" stop-color="#090C0B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="232" y1="142" x2="974" y2="554" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2B25"/>
+      <stop offset="1" stop-color="#111A16"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
+  <circle cx="1000" cy="110" r="240" fill="#76E0A7" fill-opacity=".1"/>
+  <circle cx="180" cy="603" r="205" fill="#4EBB83" fill-opacity=".08"/>
+  <rect x="190" y="105" width="820" height="490" rx="24" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="2"/>
+  <rect x="190" y="105" width="820" height="67" rx="24" fill="#FFFFFF" fill-opacity=".035"/>
+  <text x="233" y="146" fill="#EAF5EE" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="3">SPENDWISE</text>
+  <rect x="847" y="123" width="118" height="30" rx="15" fill="#77E1A5" fill-opacity=".14"/>
+  <circle cx="867" cy="138" r="5" fill="#77E1A5"/>
+  <text x="881" y="143" fill="#B8F2CE" font-family="Arial,sans-serif" font-size="11" letter-spacing="2">THIS MONTH</text>
+  <rect x="232" y="204" width="281" height="132" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <text x="257" y="237" fill="#FFFFFF" fill-opacity=".44" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">TOTAL SPENDING</text>
+  <text x="257" y="288" fill="#F1FAF4" font-family="Arial,sans-serif" font-size="38" font-weight="600">$2,480</text>
+  <path d="M258 314h76" stroke="#77E1A5" stroke-width="4" stroke-linecap="round"/>
+  <rect x="532" y="204" width="435" height="132" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <path d="M565 302v-31h31v31m16 0v-52h31v52m16 0v-75h31v75m16 0v-43h31v43m16 0v-63h31v63m16 0v-88h31v88" stroke="#77E1A5" stroke-opacity=".78" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M557 303h376" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="2"/>
+  <rect x="232" y="361" width="353" height="187" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <text x="257" y="394" fill="#FFFFFF" fill-opacity=".55" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">SPENDING BREAKDOWN</text>
+  <circle cx="328" cy="472" r="46" stroke="#FFFFFF" stroke-opacity=".1" stroke-width="13"/>
+  <path d="M328 426a46 46 0 0 1 42 27" stroke="#77E1A5" stroke-width="13" stroke-linecap="round"/>
+  <path d="M370 453a46 46 0 0 1-19 57" stroke="#69B8FF" stroke-width="13" stroke-linecap="round"/>
+  <path d="M351 510a46 46 0 0 1-54-2" stroke="#F3C66D" stroke-width="13" stroke-linecap="round"/>
+  <rect x="409" y="438" width="10" height="10" rx="5" fill="#77E1A5"/>
+  <text x="429" y="447" fill="#FFFFFF" fill-opacity=".72" font-family="Arial,sans-serif" font-size="12">Essentials</text>
+  <rect x="409" y="464" width="10" height="10" rx="5" fill="#69B8FF"/>
+  <text x="429" y="473" fill="#FFFFFF" fill-opacity=".72" font-family="Arial,sans-serif" font-size="12">Lifestyle</text>
+  <rect x="409" y="490" width="10" height="10" rx="5" fill="#F3C66D"/>
+  <text x="429" y="499" fill="#FFFFFF" fill-opacity=".72" font-family="Arial,sans-serif" font-size="12">Savings</text>
+  <rect x="604" y="361" width="363" height="187" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <text x="629" y="394" fill="#FFFFFF" fill-opacity=".55" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">RECENT ACTIVITY</text>
+  <circle cx="647" cy="433" r="11" fill="#77E1A5" fill-opacity=".17"/>
+  <path d="m642 433 4 4 7-8" stroke="#77E1A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="671" y="428" width="132" height="8" rx="4" fill="#FFFFFF" fill-opacity=".63"/>
+  <rect x="867" y="428" width="69" height="8" rx="4" fill="#FFFFFF" fill-opacity=".28"/>
+  <path d="M629 454h313" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <circle cx="647" cy="478" r="11" fill="#69B8FF" fill-opacity=".17"/>
+  <path d="M643 478h8m-4-4v8" stroke="#69B8FF" stroke-width="2" stroke-linecap="round"/>
+  <rect x="671" y="473" width="113" height="8" rx="4" fill="#FFFFFF" fill-opacity=".63"/>
+  <rect x="871" y="473" width="65" height="8" rx="4" fill="#FFFFFF" fill-opacity=".28"/>
+  <path d="M629 499h313" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <circle cx="647" cy="523" r="11" fill="#F3C66D" fill-opacity=".17"/>
+  <path d="M643 523h8" stroke="#F3C66D" stroke-width="2" stroke-linecap="round"/>
+  <rect x="671" y="518" width="143" height="8" rx="4" fill="#FFFFFF" fill-opacity=".63"/>
+  <rect x="871" y="518" width="65" height="8" rx="4" fill="#FFFFFF" fill-opacity=".28"/>
+</svg>

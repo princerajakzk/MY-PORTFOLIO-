@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="50" x2="1050" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#241735"/>
+      <stop offset="1" stop-color="#0B0A10"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="270" y1="150" x2="900" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#211B2C"/>
+      <stop offset="1" stop-color="#13111A"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
+  <circle cx="975" cy="112" r="220" fill="#A879FF" fill-opacity=".12"/>
+  <circle cx="201" cy="626" r="240" fill="#7852D6" fill-opacity=".1"/>
+  <rect x="194" y="106" width="812" height="488" rx="26" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="2"/>
+  <rect x="194" y="106" width="812" height="62" rx="26" fill="#FFFFFF" fill-opacity=".035"/>
+  <circle cx="231" cy="137" r="7" fill="#FF7D9B"/>
+  <circle cx="256" cy="137" r="7" fill="#FFC66D"/>
+  <circle cx="281" cy="137" r="7" fill="#7EE0B8"/>
+  <rect x="246" y="211" width="421" height="324" rx="14" fill="#0E0D13" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <rect x="276" y="241" width="134" height="14" rx="7" fill="#A879FF"/>
+  <rect x="276" y="278" width="344" height="10" rx="5" fill="#FFFFFF" fill-opacity=".78"/>
+  <rect x="276" y="301" width="315" height="8" rx="4" fill="#FFFFFF" fill-opacity=".26"/>
+  <rect x="276" y="326" width="348" height="8" rx="4" fill="#FFFFFF" fill-opacity=".26"/>
+  <rect x="276" y="351" width="285" height="8" rx="4" fill="#FFFFFF" fill-opacity=".26"/>
+  <rect x="276" y="399" width="333" height="8" rx="4" fill="#FFFFFF" fill-opacity=".16"/>
+  <rect x="276" y="424" width="301" height="8" rx="4" fill="#FFFFFF" fill-opacity=".16"/>
+  <rect x="276" y="449" width="327" height="8" rx="4" fill="#FFFFFF" fill-opacity=".16"/>
+  <rect x="276" y="486" width="126" height="28" rx="14" fill="#A879FF" fill-opacity=".16" stroke="#A879FF" stroke-opacity=".55"/>
+  <text x="292" y="505" fill="#D9C5FF" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2">ARTICLE ANALYSIS</text>
+  <rect x="698" y="211" width="263" height="324" rx="14" fill="#17141E" stroke="#FFFFFF" stroke-opacity=".1"/>
+  <circle cx="829" cy="329" r="67" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="14"/>
+  <path d="M829 262a67 67 0 0 1 62 42" stroke="#F28C8C" stroke-width="14" stroke-linecap="round"/>
+  <path d="M891 304a67 67 0 0 1-19 76" stroke="#A879FF" stroke-width="14" stroke-linecap="round"/>
+  <path d="M872 380a67 67 0 0 1-82 7" stroke="#65D6AE" stroke-width="14" stroke-linecap="round"/>
+  <text x="829" y="326" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" letter-spacing="2">CHECK</text>
+  <text x="829" y="347" fill="#A879FF" font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">CLAIMS</text>
+  <rect x="742" y="425" width="175" height="48" rx="24" fill="#F28C8C" fill-opacity=".12" stroke="#F28C8C" stroke-opacity=".5"/>
+  <circle cx="768" cy="449" r="6" fill="#F28C8C"/>
+  <text x="785" y="454" fill="#FFC4CB" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">REVIEW RESULT</text>
+  <text x="244" y="568" fill="#FFFFFF" fill-opacity=".36" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">SIGNAL / VERIFY / INSIGHT</text>
+</svg>

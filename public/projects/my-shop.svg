@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="92" y1="70" x2="1101" y2="669" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10252C"/>
+      <stop offset="1" stop-color="#0B0A10"/>
+    </linearGradient>
+    <linearGradient id="card" x1="313" y1="172" x2="898" y2="542" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B3336"/>
+      <stop offset="1" stop-color="#12171C"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
+  <circle cx="961" cy="142" r="245" fill="#4DE0C1" fill-opacity=".09"/>
+  <rect x="194" y="101" width="812" height="502" rx="24" fill="url(#card)" stroke="#FFFFFF" stroke-opacity=".15" stroke-width="2"/>
+  <path d="M194 126a25 25 0 0 1 25-25h762a25 25 0 0 1 25 25v44H194v-44Z" fill="#FFFFFF" fill-opacity=".04"/>
+  <circle cx="231" cy="137" r="7" fill="#FF7D9B"/>
+  <circle cx="256" cy="137" r="7" fill="#FFC66D"/>
+  <circle cx="281" cy="137" r="7" fill="#7EE0B8"/>
+  <text x="330" y="144" fill="#F3F4F6" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">MY SHOP</text>
+  <rect x="741" y="122" width="211" height="30" rx="15" fill="#FFFFFF" fill-opacity=".07"/>
+  <circle cx="915" cy="137" r="8" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2"/>
+  <path d="m921 143 6 6" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>
+  <rect x="241" y="208" width="326" height="332" rx="17" fill="#203B3D"/>
+  <circle cx="404" cy="365" r="92" fill="#67E2C2" fill-opacity=".11"/>
+  <path d="M352 320h104l17 116H335l17-116Z" fill="#E6F3EB" fill-opacity=".89"/>
+  <path d="M372 320v-20a32 32 0 0 1 64 0v20" stroke="#E6F3EB" stroke-width="10" stroke-linecap="round"/>
+  <path d="M335 358h138" stroke="#A8D9CA" stroke-width="2"/>
+  <rect x="597" y="208" width="365" height="154" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <rect x="621" y="231" width="107" height="108" rx="12" fill="#315B5A"/>
+  <circle cx="674" cy="276" r="25" fill="#B7E2D3"/>
+  <path d="M650 315c6-18 17-26 24-26s19 8 25 26" fill="#80BDAA"/>
+  <rect x="751" y="240" width="170" height="10" rx="5" fill="#FFFFFF" fill-opacity=".68"/>
+  <rect x="751" y="262" width="132" height="8" rx="4" fill="#FFFFFF" fill-opacity=".22"/>
+  <rect x="751" y="284" width="59" height="11" rx="5.5" fill="#62DDBB"/>
+  <rect x="751" y="311" width="110" height="28" rx="14" fill="#67E2C2" fill-opacity=".15" stroke="#67E2C2" stroke-opacity=".6"/>
+  <text x="770" y="330" fill="#BDF5E8" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1">ADD TO CART</text>
+  <rect x="597" y="386" width="365" height="154" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <rect x="621" y="409" width="107" height="108" rx="12" fill="#3A4140"/>
+  <path d="M646 480h57l-7-48h-43l-7 48Z" fill="#F3D79A"/>
+  <path d="M660 432v-10a15 15 0 0 1 30 0v10" stroke="#F3D79A" stroke-width="5" stroke-linecap="round"/>
+  <rect x="751" y="418" width="170" height="10" rx="5" fill="#FFFFFF" fill-opacity=".68"/>
+  <rect x="751" y="440" width="132" height="8" rx="4" fill="#FFFFFF" fill-opacity=".22"/>
+  <rect x="751" y="462" width="59" height="11" rx="5.5" fill="#62DDBB"/>
+  <rect x="751" y="489" width="110" height="28" rx="14" fill="#67E2C2" fill-opacity=".15" stroke="#67E2C2" stroke-opacity=".6"/>
+  <text x="770" y="508" fill="#BDF5E8" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1">ADD TO CART</text>
+  <text x="244" y="572" fill="#FFFFFF" fill-opacity=".42" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">DISCOVER / SHOP / CHECKOUT</text>
+</svg>
