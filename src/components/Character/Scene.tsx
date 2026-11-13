@@ -17,7 +17,7 @@ const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
   const hoverDivRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef(new THREE.Scene());
-  const { isLoading, setIsLoading, setLoading } = useLoading();
+  const { isLoading, setLoading } = useLoading();
   const isLoadingRef = useRef(isLoading);
 
   useEffect(() => {
@@ -91,7 +91,6 @@ const Scene = () => {
 
       if (!gltf) {
         setLoading(100);
-        setIsLoading(false);
         return;
       }
 
@@ -205,7 +204,7 @@ const Scene = () => {
         canvasElement.innerHTML = "";
       }
     };
-  }, [setIsLoading, setLoading]);
+  }, [setLoading]);
 
   return (
     <>
