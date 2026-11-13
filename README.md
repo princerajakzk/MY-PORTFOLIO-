@@ -17,10 +17,8 @@ that remain subject to their own licenses. See the [LICENSE](./LICENSE) file.
 
 ## 🛠️ Instructions
 
-I have modified the GSAP Club plugins using trial versions.  
-⚠️ Note: Trial plugins cannot be used for production or hosting.
-
-For official GSAP Club plugins, refer here:  
+This project uses the standard `gsap` package for GSAP plugins. For setup
+details, refer to:
 https://gsap.com/docs/v3/Installation/
 
 ---

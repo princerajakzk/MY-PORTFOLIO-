@@ -1,4 +1,4 @@
-import type { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import type { ScrollSmoother } from "gsap/ScrollSmoother";
 
 export let smoother: ScrollSmoother | undefined;
 
