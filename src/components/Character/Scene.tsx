@@ -83,36 +83,40 @@ const Scene = () => {
     const progress = setProgress((value) => setLoading(value));
     const { loadCharacter } = setCharacter(renderer, scene, camera);
 
-    loadCharacter().then((gltf) => {
-      if (cancelled) {
-        return;
-      }
-
-      if (!gltf) {
-        setLoading(100);
-        setIsLoading(false);
-        return;
-      }
-
-      const animations = setAnimations(gltf);
-      introAnimation = animations.startIntro;
-      if (hoverDivRef.current) {
-        animations.hover(gltf, hoverDivRef.current);
-      }
-      mixer = animations.mixer;
-      const loadedModel = gltf.scene;
-      loadedCharacter = loadedModel;
-      scene.add(loadedModel);
-      headBone = loadedModel.getObjectByName("spine006") || null;
-      screenLight = loadedModel.getObjectByName("screenlight") || null;
-      progress.loaded().then(() => {
-        if (!cancelled) {
-          light.turnOnLights();
-          introReady = true;
-          startIntroWhenReady();
+    // Defer character load past initial intro stages so intro has zero background competition
+    const charTimer = window.setTimeout(() => {
+      if (cancelled) return;
+      loadCharacter().then((gltf) => {
+        if (cancelled) {
+          return;
         }
+
+        if (!gltf) {
+          setLoading(100);
+          setIsLoading(false);
+          return;
+        }
+
+        const animations = setAnimations(gltf);
+        introAnimation = animations.startIntro;
+        if (hoverDivRef.current) {
+          animations.hover(gltf, hoverDivRef.current);
+        }
+        mixer = animations.mixer;
+        const loadedModel = gltf.scene;
+        loadedCharacter = loadedModel;
+        scene.add(loadedModel);
+        headBone = loadedModel.getObjectByName("spine006") || null;
+        screenLight = loadedModel.getObjectByName("screenlight") || null;
+        progress.loaded().then(() => {
+          if (!cancelled) {
+            light.turnOnLights();
+            introReady = true;
+            startIntroWhenReady();
+          }
+        });
       });
-    });
+    }, 2500);
 
     const mouse = { x: 0, y: 0 };
     const interpolation = { x: 0.1, y: 0.2 };
@@ -165,6 +169,7 @@ const Scene = () => {
       }
 
       requestAnimationFrame(animate);
+
       if (!introDismissed) {
         return;
       }
@@ -191,6 +196,7 @@ const Scene = () => {
     return () => {
       cancelled = true;
       clearTimeout(debounce);
+      clearTimeout(charTimer);
       scene.clear();
       renderer.dispose();
       window.removeEventListener("resize", handleResizeListener);

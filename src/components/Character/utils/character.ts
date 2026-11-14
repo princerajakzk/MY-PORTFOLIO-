@@ -48,43 +48,67 @@ function sculptFaceLips(
   }
   }
 
-  const sampleFace = (x: number, y: number) => {
-  let best:
-    | {
-        z: number;
-        barycentric: [number, number, number];
-        triangle: [number, number, number];
-      }
-    | undefined;
-
-  for (const triangle of frontTriangles) {
-    const [a, b, c] = triangle;
+  const preparedTriangles = frontTriangles.map(([a, b, c]) => {
     const pa = headPositions[a];
     const pb = headPositions[b];
     const pc = headPositions[c];
-    const denominator =
-      (pb.y - pc.y) * (pa.x - pc.x) +
-      (pc.x - pb.x) * (pa.y - pc.y);
-    if (Math.abs(denominator) < 1e-8) continue;
+    return {
+      triangle: [a, b, c] as [number, number, number],
+      pa,
+      pb,
+      pc,
+      minX: Math.min(pa.x, pb.x, pc.x),
+      maxX: Math.max(pa.x, pb.x, pc.x),
+      minY: Math.min(pa.y, pb.y, pc.y),
+      maxY: Math.max(pa.y, pb.y, pc.y),
+    };
+  });
 
-    const u =
-      ((pb.y - pc.y) * (x - pc.x) + (pc.x - pb.x) * (y - pc.y)) /
-      denominator;
-    const v =
-      ((pc.y - pa.y) * (x - pc.x) + (pa.x - pc.x) * (y - pc.y)) /
-      denominator;
-    const w = 1 - u - v;
-    if (u < -1e-4 || v < -1e-4 || w < -1e-4) continue;
+  const uniqueFrontVertices = Array.from(new Set(frontTriangles.flat()));
 
-    const z = u * pa.z + v * pb.z + w * pc.z;
-    if (!best || z > best.z) best = { z, barycentric: [u, v, w], triangle };
-  }
+  const sampleFace = (x: number, y: number) => {
+    let best:
+      | {
+          z: number;
+          barycentric: [number, number, number];
+          triangle: [number, number, number];
+        }
+      | undefined;
 
-  if (!best) {
-    let nearestVertex = -1;
-    let nearestDistance = Infinity;
-    for (const [a, b, c] of frontTriangles) {
-      for (const vertexIndex of [a, b, c]) {
+    for (let i = 0; i < preparedTriangles.length; i++) {
+      const pt = preparedTriangles[i];
+      if (
+        x < pt.minX - 0.005 ||
+        x > pt.maxX + 0.005 ||
+        y < pt.minY - 0.005 ||
+        y > pt.maxY + 0.005
+      ) {
+        continue;
+      }
+
+      const { pa, pb, pc } = pt;
+      const denominator =
+        (pb.y - pc.y) * (pa.x - pc.x) + (pc.x - pb.x) * (pa.y - pc.y);
+      if (Math.abs(denominator) < 1e-8) continue;
+
+      const u =
+        ((pb.y - pc.y) * (x - pc.x) + (pc.x - pb.x) * (y - pc.y)) /
+        denominator;
+      const v =
+        ((pc.y - pa.y) * (x - pc.x) + (pa.x - pc.x) * (y - pc.y)) /
+        denominator;
+      const w = 1 - u - v;
+      if (u < -1e-4 || v < -1e-4 || w < -1e-4) continue;
+
+      const z = u * pa.z + v * pb.z + w * pc.z;
+      if (!best || z > best.z) best = { z, barycentric: [u, v, w], triangle: pt.triangle };
+    }
+
+    if (!best) {
+      let nearestVertex = -1;
+      let nearestDistance = Infinity;
+      for (let i = 0; i < uniqueFrontVertices.length; i++) {
+        const vertexIndex = uniqueFrontVertices[i];
         const point = headPositions[vertexIndex];
         const distance = (point.x - x) ** 2 + (point.y - y) ** 2;
         if (distance < nearestDistance) {
@@ -92,14 +116,13 @@ function sculptFaceLips(
           nearestVertex = vertexIndex;
         }
       }
+      if (nearestVertex < 0) return null;
+      best = {
+        z: headPositions[nearestVertex].z,
+        barycentric: [1, 0, 0],
+        triangle: [nearestVertex, nearestVertex, nearestVertex],
+      };
     }
-    if (nearestVertex < 0) return null;
-    best = {
-      z: headPositions[nearestVertex].z,
-      barycentric: [1, 0, 0],
-      triangle: [nearestVertex, nearestVertex, nearestVertex],
-    };
-  }
 
   const jointWeights = new Map<number, number>();
   best.triangle.forEach((vertexIndex, vertexNumber) => {
@@ -324,14 +347,14 @@ const setCharacter = (
     sheenRoughness: 0.82,
   });
 
-  // Light pinstriped shirt
+  // Red t-shirt
   const shirtCanvas = document.createElement("canvas");
   shirtCanvas.width = 512; shirtCanvas.height = 512;
   const sc = shirtCanvas.getContext("2d");
   if (sc) {
-    sc.fillStyle = "#edeef2"; sc.fillRect(0, 0, 512, 512);
-    sc.strokeStyle = "#d4d7e0"; sc.lineWidth = 3;
-    for (let x = 0; x < 512; x += 14) {
+    sc.fillStyle = "#dc2626"; sc.fillRect(0, 0, 512, 512);
+    sc.strokeStyle = "#b91c1c"; sc.lineWidth = 2;
+    for (let x = 0; x < 512; x += 8) {
       sc.beginPath(); sc.moveTo(x, 0); sc.lineTo(x, 512); sc.stroke();
     }
   }
@@ -341,8 +364,8 @@ const setCharacter = (
   shirtTex.repeat.set(4, 4);
 
   const shirtMaterial = new THREE.MeshStandardMaterial({
-    color: new THREE.Color("#f2f3f7"),
-    roughness: 0.8,
+    color: new THREE.Color("#ffffff"),
+    roughness: 0.75,
     metalness: 0.02,
     map: shirtTex,
   });

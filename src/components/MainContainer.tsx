@@ -9,15 +9,18 @@ import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
+import { useLoading } from "../context/useLoading";
 
 const TechStack = lazy(() => import("./TechStack"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
+  const { isLoading } = useLoading();
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
     window.innerWidth > 1024
   );
 
   useEffect(() => {
+    if (isLoading) return;
     const resizeHandler = () => {
       setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
@@ -27,7 +30,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [isDesktopView]);
+  }, [isDesktopView, isLoading]);
 
   return (
     <div className="container-main">
@@ -43,7 +46,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <WhatIDo />
             <Career />
             <Work />
-            {isDesktopView && (
+            {isDesktopView && !isLoading && (
               <Suspense fallback={<div>Loading....</div>}>
                 <TechStack />
               </Suspense>
