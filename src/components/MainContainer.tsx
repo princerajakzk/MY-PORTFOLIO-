@@ -18,6 +18,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
     window.innerWidth > 1024
   );
+  const [loadTechStack, setLoadTechStack] = useState(false);
 
   useEffect(() => {
     if (isLoading) return;
@@ -30,7 +31,16 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [isDesktopView, isLoading]);
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (!isLoading && isDesktopView) {
+      const timer = window.setTimeout(() => {
+        setLoadTechStack(true);
+      }, 3000);
+      return () => window.clearTimeout(timer);
+    }
+  }, [isLoading, isDesktopView]);
 
   return (
     <div className="container-main">
@@ -46,7 +56,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <WhatIDo />
             <Career />
             <Work />
-            {isDesktopView && !isLoading && (
+            {isDesktopView && loadTechStack && (
               <Suspense fallback={<div>Loading....</div>}>
                 <TechStack />
               </Suspense>

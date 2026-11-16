@@ -29,7 +29,7 @@ export const handleTouchEnd = (
   setTimeout(() => {
     setMousePosition(0, 0, 0.03, 0.03);
     setTimeout(() => {
-      setMousePosition(0, 0, 0.1, 0.2);
+      setMousePosition(0, 0, 0.08, 0.10);
     }, 1000);
   }, 2000);
 };

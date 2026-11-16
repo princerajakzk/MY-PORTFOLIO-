@@ -26,15 +26,8 @@ export const setProgress = (setLoading: (value: number) => void) => {
   const loaded = () =>
     new Promise<number>((resolve) => {
       window.clearInterval(interval);
-      interval = window.setInterval(() => {
-        if (percent < 100) {
-          percent += 1;
-          setLoading(percent);
-        } else {
-          resolve(percent);
-          window.clearInterval(interval);
-        }
-      }, 2);
+      setLoading(100);
+      resolve(100);
     });
 
   return { loaded, percent, clear };

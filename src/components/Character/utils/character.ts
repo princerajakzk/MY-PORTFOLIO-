@@ -413,10 +413,9 @@ const setCharacter = (
       const gltf = await new Promise<GLTF>((resolve, reject) => {
         loader.load(
           modelUrl,
-          async (loadedGltf) => {
+          (loadedGltf) => {
             try {
               const character = loadedGltf.scene;
-              await renderer.compileAsync(character, camera, scene);
               character.traverse((child: THREE.Object3D) => {
               if (child instanceof THREE.Mesh) {
                 const mesh = child;
@@ -518,8 +517,12 @@ const setCharacter = (
                 if (existingTeeth) headBone.remove(existingTeeth);
               }
 
-              character.getObjectByName("footR")!.position.y = 3.36;
-              character.getObjectByName("footL")!.position.y = 3.36;
+              const footR = character.getObjectByName("footR");
+              if (footR) footR.position.y = 3.36;
+              const footL = character.getObjectByName("footL");
+              if (footL) footL.position.y = 3.36;
+
+              renderer.compile(character, camera, scene);
               resolve(loadedGltf);
             } catch (error) {
               reject(error);

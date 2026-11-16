@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useMemo, useState } from "react";
 import Loading from "../components/Loading";
 
 interface LoadingType {
@@ -13,11 +13,14 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
 
-  const value = {
-    isLoading,
-    setIsLoading,
-    setLoading,
-  };
+  const value = useMemo(
+    () => ({
+      isLoading,
+      setIsLoading,
+      setLoading,
+    }),
+    [isLoading]
+  );
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

@@ -58,10 +58,13 @@ const Scene = () => {
     let screenLight: THREE.Object3D | null = null;
     let mixer: THREE.AnimationMixer | undefined;
     let loadedCharacter: THREE.Object3D | null = null;
-    let introAnimation: (() => void) | null = null;
+    let introAnimation: ((onDone: () => void) => void) | null = null;
     let introReady = false;
     let introDismissed = !isLoadingRef.current;
     let introPlayed = false;
+    // While intro animation is running, block handleHeadRotation so the two
+    // don't fight over spine006 (head bone) → no blinking/jitter
+    let introActive = false;
 
     const startIntroWhenReady = () => {
       if (!introReady || !introDismissed || introPlayed || !introAnimation) {
@@ -69,10 +72,38 @@ const Scene = () => {
       }
 
       introPlayed = true;
-      introAnimation();
+      introActive = true; // block head rotation until intro fade begins
+      clock.start();
+      light.turnOnLights();
+      introAnimation(() => {
+        // Intro fade has started — ramp interpolation from 0 → normal over ~800ms
+        // so head glides smoothly into mouse-follow instead of snapping
+        interpolation.x = 0.01;
+        interpolation.y = 0.01;
+        introActive = false; // now allow handleHeadRotation() to run
+
+        // Gradually ease interpolation up to normal values
+        const steps = [
+          { delay: 150, x: 0.03, y: 0.03 },
+          { delay: 350, x: 0.06, y: 0.07 },
+          { delay: 600, x: 0.08, y: 0.10 },
+          { delay: 900, x: 0.08, y: 0.10 }, // final steady values
+        ];
+        steps.forEach(({ delay, x, y }) => {
+          setTimeout(() => {
+            interpolation.x = x;
+            interpolation.y = y;
+          }, delay);
+        });
+      });
     };
     const onIntroDismissed = () => {
       introDismissed = true;
+      // Do NOT call clock.start() here — it's already started in startIntroWhenReady()
+      // calling it twice resets elapsedTime and causes a delta spike on the next frame
+      if (loadedCharacter) {
+        handleResize(renderer, camera, canvasDiv, loadedCharacter);
+      }
       startIntroWhenReady();
     };
     window.addEventListener("portfolio-intro-dismissed", onIntroDismissed);
@@ -83,43 +114,43 @@ const Scene = () => {
     const progress = setProgress((value) => setLoading(value));
     const { loadCharacter } = setCharacter(renderer, scene, camera);
 
-    // Defer character load past initial intro stages so intro has zero background competition
-    const charTimer = window.setTimeout(() => {
-      if (cancelled) return;
-      loadCharacter().then((gltf) => {
-        if (cancelled) {
-          return;
-        }
+    // Load character in background immediately so shaders, textures, and animations are ready
+    loadCharacter().then((gltf) => {
+      if (cancelled) {
+        return;
+      }
 
-        if (!gltf) {
-          setLoading(100);
-          setIsLoading(false);
-          return;
-        }
+      if (!gltf) {
+        setLoading(100);
+        setIsLoading(false);
+        return;
+      }
 
-        const animations = setAnimations(gltf);
-        introAnimation = animations.startIntro;
-        if (hoverDivRef.current) {
-          animations.hover(gltf, hoverDivRef.current);
+      const animations = setAnimations(gltf);
+      introAnimation = animations.startIntro;
+      if (hoverDivRef.current) {
+        animations.hover(gltf, hoverDivRef.current);
+      }
+      mixer = animations.mixer;
+      const loadedModel = gltf.scene;
+      loadedCharacter = loadedModel;
+      scene.add(loadedModel);
+      headBone = loadedModel.getObjectByName("spine006") || null;
+      screenLight = loadedModel.getObjectByName("screenlight") || null;
+
+      // Precompile all shaders with full scene lighting & materials
+      renderer.compile(scene, camera);
+
+      progress.loaded().then(() => {
+        if (!cancelled) {
+          introReady = true;
+          startIntroWhenReady();
         }
-        mixer = animations.mixer;
-        const loadedModel = gltf.scene;
-        loadedCharacter = loadedModel;
-        scene.add(loadedModel);
-        headBone = loadedModel.getObjectByName("spine006") || null;
-        screenLight = loadedModel.getObjectByName("screenlight") || null;
-        progress.loaded().then(() => {
-          if (!cancelled) {
-            light.turnOnLights();
-            introReady = true;
-            startIntroWhenReady();
-          }
-        });
       });
-    }, 2500);
+    });
 
     const mouse = { x: 0, y: 0 };
-    const interpolation = { x: 0.1, y: 0.2 };
+    const interpolation = { x: 0.08, y: 0.10 };
 
     const onMouseMove = (event: MouseEvent) => {
       handleMouseMove(event, (x, y) => {
@@ -174,7 +205,13 @@ const Scene = () => {
         return;
       }
 
-      if (headBone) {
+      const rawDelta = clock.getDelta();
+      const delta = Math.min(rawDelta, 0.05);
+      if (mixer) {
+        mixer.update(delta);
+      }
+
+      if (headBone && !introActive) {
         handleHeadRotation(
           headBone,
           mouse.x,
@@ -185,10 +222,7 @@ const Scene = () => {
         );
         light.setPointLight(screenLight);
       }
-      const delta = clock.getDelta();
-      if (mixer) {
-        mixer.update(delta);
-      }
+
       renderer.render(scene, camera);
     };
     animate();
@@ -196,7 +230,6 @@ const Scene = () => {
     return () => {
       cancelled = true;
       clearTimeout(debounce);
-      clearTimeout(charTimer);
       scene.clear();
       renderer.dispose();
       window.removeEventListener("resize", handleResizeListener);
