@@ -33,19 +33,19 @@ html,body{height:100%;margin:0;background:var(--bg);overflow:hidden;font-family:
 .wr .txt-fill{fill:rgba(20,12,3,0.6)}
 .wl .txt-edge{fill:none;stroke:rgba(53,224,255,0.35);stroke-width:1.2px}
 .wr .txt-edge{fill:none;stroke:rgba(255,183,50,0.4);stroke-width:1.3px}
-.wl .txt-glow{fill:none;stroke:#35e0ff;stroke-width:1.6px;opacity:.9;filter:drop-shadow(0 0 5px #35e0ff) drop-shadow(0 0 15px rgba(53,224,255,0.6))}
-.wr .txt-glow{fill:none;stroke:url(#apexGlow);stroke-width:1.8px;opacity:.95;filter:drop-shadow(0 0 6px #ffb732) drop-shadow(0 0 16px rgba(255,160,0,0.55)) drop-shadow(0 0 25px rgba(53,224,255,0.35))}
+.wl .txt-glow{fill:none;stroke:#35e0ff;stroke-width:1.6px;opacity:.9;filter:drop-shadow(0 0 8px rgba(53,224,255,0.7))}
+.wr .txt-glow{fill:none;stroke:url(#apexGlow);stroke-width:1.8px;opacity:.95;filter:drop-shadow(0 0 8px rgba(255,183,50,0.75))}
 .txt-dot{fill:none;stroke-linecap:round;pointer-events:none}
-.dot-white{stroke:#ffffff;stroke-width:4px;stroke-dasharray:7 150;animation:slideDots 2.8s linear infinite;filter:drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 9px #ffffff)}
-.dot-cyan{stroke:#35e0ff;stroke-width:3.4px;stroke-dasharray:6 150;stroke-dashoffset:50;animation:slideDots 2.8s linear infinite;filter:drop-shadow(0 0 4px #35e0ff) drop-shadow(0 0 12px #35e0ff)}
-.dot-gold{stroke:#ffb732;stroke-width:3.4px;stroke-dasharray:6 150;stroke-dashoffset:100;animation:slideDots 2.8s linear infinite;filter:drop-shadow(0 0 4px #ffb732) drop-shadow(0 0 12px #ff9500)}
+.dot-white{stroke:#ffffff;stroke-width:3.6px;stroke-dasharray:7 150;animation:slideDots 2.8s linear infinite;filter:drop-shadow(0 0 4px #ffffff)}
+.dot-cyan{stroke:#35e0ff;stroke-width:3px;stroke-dasharray:6 150;stroke-dashoffset:50;animation:slideDots 2.8s linear infinite;filter:drop-shadow(0 0 4px #35e0ff)}
+.dot-gold{stroke:#ffb732;stroke-width:3px;stroke-dasharray:6 150;stroke-dashoffset:100;animation:slideDots 2.8s linear infinite;filter:drop-shadow(0 0 4px #ffb732)}
 .author-tag{position:absolute;right:5%;bottom:16%;display:flex;align-items:center;gap:1em;font-family:"Orbitron",system-ui,sans-serif;font-size:clamp(9px,0.9vw,11px);font-weight:600;letter-spacing:.42em;color:#38bdf8;text-shadow:0 0 8px rgba(56,189,248,0.7),0 0 18px rgba(56,189,248,0.35);pointer-events:none;white-space:nowrap;opacity:.92;animation:up 1.2s .4s cubic-bezier(.16,.9,.2,1) both}
 .author-tag::before{content:"";width:clamp(20px,2.5vw,38px);height:1px;background:linear-gradient(90deg,transparent,#ffb732);box-shadow:0 0 5px #ffb732}
 .author-tag::after{content:"";width:clamp(16px,2vw,28px);height:1px;background:linear-gradient(270deg,transparent,#38bdf8);box-shadow:0 0 5px #38bdf8}
 .flash{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,#e6fbff 0%,#35e0ff66 28%,transparent 62%);animation:flash 1.1s ease-out both}
 @keyframes sp{to{transform:rotate(360deg)}}
 .cc::before{content:"";position:absolute;width:62%;height:62%;border-radius:50%;background:radial-gradient(circle,#35e0ff55,transparent 70%);animation:lp2 2.6s ease-in-out infinite}
-.sl{will-change:transform;position:absolute;inset:-20%;pointer-events:none;background:repeating-conic-gradient(from 0deg at 50% 50%,#35e0ff00 0 3deg,#7df3ff33 3deg 3.5deg,#a855f722 3.5deg 6deg);-webkit-mask-image:radial-gradient(circle,transparent 25%,#000 75%);mask-image:radial-gradient(circle,transparent 25%,#000 75%);animation:sp 24s linear infinite}
+.sl{will-change:transform;position:absolute;inset:-20%;pointer-events:none;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,#35e0ff22 45deg,transparent 90deg,#a855f722 180deg,transparent 270deg,#35e0ff22 315deg,transparent 360deg);animation:sp 24s linear infinite}
 .sw{position:absolute;left:50%;top:50%;width:20vmin;height:20vmin;margin:-10vmin 0 0 -10vmin;border-radius:50%;border:2px solid #9af2ff;box-shadow:0 0 18px #35e0ff;will-change:transform,opacity;animation:swv 1.2s ease-out both;pointer-events:none}
 .shk{animation:shk .6s linear}
 [data-q="1"] .sl{animation:none}
@@ -132,10 +132,10 @@ function App(){
 
  useEffect(()=>{
   const s=S.current,el=mount.current,rnd=Math.random;
-  const MB=window.innerWidth<700,r=new THREE.WebGLRenderer({antialias:!MB,alpha:true});let pr=Math.min(window.devicePixelRatio,MB?1.5:2);
+  const MB=window.innerWidth<700,r=new THREE.WebGLRenderer({antialias:!MB,alpha:true,powerPreference:"high-performance"});let pr=Math.min(window.devicePixelRatio,MB?1.25:1.5);
   r.setPixelRatio(pr);el.appendChild(r.domElement);
   const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,400),grp=new THREE.Group();sc.add(grp);
-  const N=MB?1800:3200,M=MB?400:800,RM=15;
+  const N=MB?1000:1800,M=MB?240:420,RM=15;
   const dir=new Float32Array(N*3),tr=new Float32Array(N),sr=new Float32Array(N),sp=new Float32Array(N),pos=new Float32Array(N*3),
    col=new Float32Array(N*3),sz=new Float32Array(N),ab=new Float32Array(N),al=new Float32Array(N);
   const pal=["#35e0ff","#35e0ff","#a855f7","#ffffff","#4f7dff"].map(c=>new THREE.Color(c));
