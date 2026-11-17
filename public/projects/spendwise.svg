@@ -1,56 +1,224 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" fill="none">
   <defs>
-    <linearGradient id="bg" x1="90" y1="40" x2="1084" y2="682" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#17322A"/>
-      <stop offset="1" stop-color="#090C0B"/>
+    <linearGradient id="sw-bg" x1="0" y1="0" x2="1200" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a1215"/>
+      <stop offset="0.5" stop-color="#081013"/>
+      <stop offset="1" stop-color="#060c0e"/>
     </linearGradient>
-    <linearGradient id="panel" x1="232" y1="142" x2="974" y2="554" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1B2B25"/>
-      <stop offset="1" stop-color="#111A16"/>
+    <linearGradient id="sw-card" x1="0" y1="0" x2="0" y2="100%">
+      <stop stop-color="#0d1b1e" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#091417" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="sw-green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="sw-pink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#fb7185"/>
     </linearGradient>
   </defs>
-  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
-  <circle cx="1000" cy="110" r="240" fill="#76E0A7" fill-opacity=".1"/>
-  <circle cx="180" cy="603" r="205" fill="#4EBB83" fill-opacity=".08"/>
-  <rect x="190" y="105" width="820" height="490" rx="24" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="2"/>
-  <rect x="190" y="105" width="820" height="67" rx="24" fill="#FFFFFF" fill-opacity=".035"/>
-  <text x="233" y="146" fill="#EAF5EE" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="3">SPENDWISE</text>
-  <rect x="847" y="123" width="118" height="30" rx="15" fill="#77E1A5" fill-opacity=".14"/>
-  <circle cx="867" cy="138" r="5" fill="#77E1A5"/>
-  <text x="881" y="143" fill="#B8F2CE" font-family="Arial,sans-serif" font-size="11" letter-spacing="2">THIS MONTH</text>
-  <rect x="232" y="204" width="281" height="132" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
-  <text x="257" y="237" fill="#FFFFFF" fill-opacity=".44" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">TOTAL SPENDING</text>
-  <text x="257" y="288" fill="#F1FAF4" font-family="Arial,sans-serif" font-size="38" font-weight="600">$2,480</text>
-  <path d="M258 314h76" stroke="#77E1A5" stroke-width="4" stroke-linecap="round"/>
-  <rect x="532" y="204" width="435" height="132" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
-  <path d="M565 302v-31h31v31m16 0v-52h31v52m16 0v-75h31v75m16 0v-43h31v43m16 0v-63h31v63m16 0v-88h31v88" stroke="#77E1A5" stroke-opacity=".78" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M557 303h376" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="2"/>
-  <rect x="232" y="361" width="353" height="187" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
-  <text x="257" y="394" fill="#FFFFFF" fill-opacity=".55" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">SPENDING BREAKDOWN</text>
-  <circle cx="328" cy="472" r="46" stroke="#FFFFFF" stroke-opacity=".1" stroke-width="13"/>
-  <path d="M328 426a46 46 0 0 1 42 27" stroke="#77E1A5" stroke-width="13" stroke-linecap="round"/>
-  <path d="M370 453a46 46 0 0 1-19 57" stroke="#69B8FF" stroke-width="13" stroke-linecap="round"/>
-  <path d="M351 510a46 46 0 0 1-54-2" stroke="#F3C66D" stroke-width="13" stroke-linecap="round"/>
-  <rect x="409" y="438" width="10" height="10" rx="5" fill="#77E1A5"/>
-  <text x="429" y="447" fill="#FFFFFF" fill-opacity=".72" font-family="Arial,sans-serif" font-size="12">Essentials</text>
-  <rect x="409" y="464" width="10" height="10" rx="5" fill="#69B8FF"/>
-  <text x="429" y="473" fill="#FFFFFF" fill-opacity=".72" font-family="Arial,sans-serif" font-size="12">Lifestyle</text>
-  <rect x="409" y="490" width="10" height="10" rx="5" fill="#F3C66D"/>
-  <text x="429" y="499" fill="#FFFFFF" fill-opacity=".72" font-family="Arial,sans-serif" font-size="12">Savings</text>
-  <rect x="604" y="361" width="363" height="187" rx="16" fill="#FFFFFF" fill-opacity=".045" stroke="#FFFFFF" stroke-opacity=".08"/>
-  <text x="629" y="394" fill="#FFFFFF" fill-opacity=".55" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">RECENT ACTIVITY</text>
-  <circle cx="647" cy="433" r="11" fill="#77E1A5" fill-opacity=".17"/>
-  <path d="m642 433 4 4 7-8" stroke="#77E1A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="671" y="428" width="132" height="8" rx="4" fill="#FFFFFF" fill-opacity=".63"/>
-  <rect x="867" y="428" width="69" height="8" rx="4" fill="#FFFFFF" fill-opacity=".28"/>
-  <path d="M629 454h313" stroke="#FFFFFF" stroke-opacity=".08"/>
-  <circle cx="647" cy="478" r="11" fill="#69B8FF" fill-opacity=".17"/>
-  <path d="M643 478h8m-4-4v8" stroke="#69B8FF" stroke-width="2" stroke-linecap="round"/>
-  <rect x="671" y="473" width="113" height="8" rx="4" fill="#FFFFFF" fill-opacity=".63"/>
-  <rect x="871" y="473" width="65" height="8" rx="4" fill="#FFFFFF" fill-opacity=".28"/>
-  <path d="M629 499h313" stroke="#FFFFFF" stroke-opacity=".08"/>
-  <circle cx="647" cy="523" r="11" fill="#F3C66D" fill-opacity=".17"/>
-  <path d="M643 523h8" stroke="#F3C66D" stroke-width="2" stroke-linecap="round"/>
-  <rect x="671" y="518" width="143" height="8" rx="4" fill="#FFFFFF" fill-opacity=".63"/>
-  <rect x="871" y="518" width="65" height="8" rx="4" fill="#FFFFFF" fill-opacity=".28"/>
+
+  <!-- Background -->
+  <rect width="1200" height="700" rx="16" fill="url(#sw-bg)"/>
+  <rect width="1200" height="700" rx="16" stroke="rgba(16,185,129,0.2)" stroke-width="2"/>
+
+  <!-- Left Sidebar -->
+  <rect x="0" y="0" width="190" height="700" fill="#091316" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  <!-- Logo -->
+  <rect x="22" y="24" width="32" height="32" rx="8" fill="#10b981"/>
+  <path d="M28 42 L34 34 L40 38 L48 28" fill="none" stroke="#042f2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="64" y="40" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700">SpendWise</text>
+  <text x="64" y="52" fill="#6ee7b7" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="600" letter-spacing="1">TRACK • ANALYZE • GROW</text>
+
+  <!-- Sidebar Nav Items -->
+  <g transform="translate(18, 90)" font-family="'Segoe UI', sans-serif" font-size="12">
+    <!-- Active Dashboard -->
+    <rect x="0" y="0" width="154" height="36" rx="8" fill="#064e3b" fill-opacity="0.5" stroke="#10b981" stroke-width="1"/>
+    <text x="14" y="23" fill="#34d399">📊 Dashboard</text>
+
+    <text x="14" y="63" fill="#94a3b8">💳 Transactions</text>
+    <text x="14" y="103" fill="#94a3b8">📈 Analytics</text>
+    <text x="14" y="143" fill="#94a3b8">🎯 Budgets</text>
+    <text x="14" y="183" fill="#94a3b8">🏆 Goals</text>
+    <text x="14" y="223" fill="#94a3b8">👛 Wallets</text>
+    <text x="14" y="263" fill="#94a3b8">📄 Reports</text>
+    <text x="14" y="303" fill="#94a3b8">⚙️ Settings</text>
+  </g>
+
+  <!-- Sidebar Bottom Wallet Card -->
+  <g transform="translate(16, 540)">
+    <rect width="158" height="135" rx="12" fill="#0c2024" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+    <text x="14" y="35" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Take control of</text>
+    <text x="14" y="50" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">your finances</text>
+    <text x="14" y="68" fill="#6ee7b7" font-family="'Segoe UI', sans-serif" font-size="9">Track expenses, set goals.</text>
+    <rect x="14" y="86" width="130" height="32" rx="6" fill="#10b981"/>
+    <text x="79" y="106" fill="#022c22" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" text-anchor="middle">+ Add Transaction</text>
+  </g>
+
+  <!-- Top Search & Profile Bar -->
+  <g transform="translate(210, 20)">
+    <rect x="0" y="0" width="340" height="38" rx="8" fill="#0d1b1e" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <text x="16" y="24" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="12">🔍 Search transactions, categories...</text>
+
+    <!-- Add Transaction Header Button -->
+    <rect x="520" y="0" width="130" height="38" rx="8" fill="#10b981"/>
+    <text x="585" y="24" fill="#022c22" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" text-anchor="middle">+ Add Transaction</text>
+
+    <!-- Date selector -->
+    <rect x="665" y="0" width="105" height="38" rx="8" fill="#0d1b1e" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <text x="682" y="24" fill="#cbd5e1" font-family="'Segoe UI', sans-serif" font-size="11">📅 Nov 2026</text>
+
+    <!-- User Profile -->
+    <circle cx="810" cy="19" r="16" fill="#6366f1"/>
+    <text x="810" y="24" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" text-anchor="middle">RM</text>
+    <text x="836" y="18" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Rohan Mehta</text>
+    <text x="836" y="30" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9">rohan@spendwise.com</text>
+  </g>
+
+  <!-- Greeting -->
+  <g transform="translate(210, 90)">
+    <text x="0" y="24" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700">Good Morning, Rohan! 👋</text>
+    <text x="0" y="44" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="12">Here's a summary of your finances for Nov 2026.</text>
+  </g>
+
+  <!-- 4 Stat Metric Cards -->
+  <g transform="translate(210, 150)">
+    <!-- Card 1: Total Balance -->
+    <rect x="0" y="0" width="155" height="100" rx="12" fill="#0b1b1e" stroke="rgba(16,185,129,0.3)" stroke-width="1.2"/>
+    <rect x="14" y="14" width="28" height="28" rx="6" fill="#10b981" fill-opacity="0.2"/>
+    <text x="28" y="33" fill="#10b981" font-size="14" text-anchor="middle">💳</text>
+    <text x="50" y="25" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">Total Balance</text>
+    <text x="14" y="68" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="18" font-weight="700">₹1,91,394</text>
+    <text x="14" y="86" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600">▲ 0% across all accounts</text>
+
+    <!-- Card 2: Income -->
+    <rect x="170" y="0" width="155" height="100" rx="12" fill="#0b1828" stroke="rgba(59,130,246,0.3)" stroke-width="1.2"/>
+    <rect x="184" y="14" width="28" height="28" rx="6" fill="#3b82f6" fill-opacity="0.2"/>
+    <text x="198" y="33" fill="#3b82f6" font-size="14" text-anchor="middle">↑</text>
+    <text x="220" y="25" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">Total Income</text>
+    <text x="184" y="68" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="18" font-weight="700">₹0</text>
+    <text x="184" y="86" fill="#ef4444" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600">▼ 100% vs previous</text>
+
+    <!-- Card 3: Expenses -->
+    <rect x="340" y="0" width="155" height="100" rx="12" fill="#200f16" stroke="rgba(244,63,94,0.3)" stroke-width="1.2"/>
+    <rect x="354" y="14" width="28" height="28" rx="6" fill="#f43f5e" fill-opacity="0.2"/>
+    <text x="368" y="33" fill="#f43f5e" font-size="14" text-anchor="middle">↓</text>
+    <text x="390" y="25" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">Total Expenses</text>
+    <text x="354" y="68" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="18" font-weight="700">₹0</text>
+    <text x="354" y="86" fill="#ef4444" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600">▼ 100% vs previous</text>
+
+    <!-- Card 4: Savings -->
+    <rect x="510" y="0" width="155" height="100" rx="12" fill="#180f24" stroke="rgba(168,85,247,0.3)" stroke-width="1.2"/>
+    <rect x="524" y="14" width="28" height="28" rx="6" fill="#a855f7" fill-opacity="0.2"/>
+    <text x="538" y="33" fill="#a855f7" font-size="14" text-anchor="middle">🔒</text>
+    <text x="560" y="25" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">Savings</text>
+    <text x="524" y="68" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="18" font-weight="700">₹0</text>
+    <text x="524" y="86" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600">▲ 100% of income</text>
+  </g>
+
+  <!-- Expense Overview Trend Chart -->
+  <g transform="translate(210, 270)">
+    <rect width="325" height="220" rx="14" fill="url(#sw-card)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <text x="18" y="28" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">Expense Overview</text>
+    <text x="18" y="44" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9">Your spending trend for last 6 months</text>
+
+    <!-- Legend -->
+    <circle cx="230" cy="24" r="3.5" fill="#10b981"/>
+    <text x="240" y="28" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9">Income</text>
+    <circle cx="280" cy="24" r="3.5" fill="#f43f5e"/>
+    <text x="290" y="28" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="9">Expenses</text>
+
+    <!-- Grid lines -->
+    <g stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3 3">
+      <line x1="45" y1="70" x2="305" y2="70"/>
+      <line x1="45" y1="105" x2="305" y2="105"/>
+      <line x1="45" y1="140" x2="305" y2="140"/>
+      <line x1="45" y1="175" x2="305" y2="175"/>
+    </g>
+
+    <!-- Glowing Pink Curve (Expenses spike) -->
+    <path d="M45 155 Q80 150 120 160 Q170 170 200 90 Q225 35 240 100 Q260 170 295 185" fill="none" stroke="url(#sw-pink)" stroke-width="2.5"/>
+    <!-- Glowing Green Curve (Income line) -->
+    <path d="M45 130 Q120 130 180 130 Q220 128 250 145 Q280 160 295 175" fill="none" stroke="url(#sw-green)" stroke-width="2.5"/>
+
+    <!-- Months axis -->
+    <g fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="middle">
+      <text x="55" y="198">Jun</text>
+      <text x="100" y="198">Jul</text>
+      <text x="150" y="198">Aug</text>
+      <text x="200" y="198">Sep</text>
+      <text x="245" y="198">Oct</text>
+      <text x="290" y="198">Nov</text>
+    </g>
+  </g>
+
+  <!-- Spending by Category Donut Chart -->
+  <g transform="translate(550, 270)">
+    <rect width="325" height="220" rx="14" fill="url(#sw-card)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <text x="18" y="28" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">Spending by Category</text>
+
+    <!-- Donut Ring -->
+    <g transform="translate(162, 115)">
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#0e2327" stroke-width="14"/>
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#10b981" stroke-width="14" stroke-dasharray="140 200" stroke-dashoffset="30"/>
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#3b82f6" stroke-width="14" stroke-dasharray="70 270" stroke-dashoffset="-120"/>
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#f43f5e" stroke-width="14" stroke-dasharray="50 290" stroke-dashoffset="-200"/>
+      <text x="0" y="2" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700" text-anchor="middle">₹0</text>
+      <text x="0" y="18" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9" text-anchor="middle">Total Spent</text>
+    </g>
+    <text x="162" y="195" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="10" text-anchor="middle">No expenses in this period.</text>
+  </g>
+
+  <!-- Right Monthly Budget Panel -->
+  <g transform="translate(890, 90)">
+    <rect width="285" height="580" rx="14" fill="url(#sw-card)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <text x="20" y="32" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700">Monthly Budget</text>
+    <text x="240" y="32" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9">Nov 2026 ▼</text>
+
+    <!-- Budget Circular Gauge -->
+    <g transform="translate(142, 95)">
+      <circle cx="0" cy="0" r="42" fill="none" stroke="#132a2e" stroke-width="10"/>
+      <circle cx="0" cy="0" r="42" fill="none" stroke="#10b981" stroke-width="10" stroke-dasharray="60 200"/>
+      <text x="0" y="3" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700" text-anchor="middle">0%</text>
+      <text x="0" y="18" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="8" text-anchor="middle">USED</text>
+    </g>
+    <text x="142" y="160" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="18" font-weight="700" text-anchor="middle">₹0</text>
+    <text x="142" y="176" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="10" text-anchor="middle">of ₹1,03,000 used</text>
+
+    <!-- Category Progress Items -->
+    <text x="20" y="210" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Budget Categories</text>
+
+    <g transform="translate(20, 230)" font-family="'Segoe UI', sans-serif">
+      <!-- Item 1 -->
+      <text x="0" y="10" fill="#e2e8f0" font-size="10">🍕 Food &amp; Dining</text>
+      <text x="245" y="10" fill="#94a3b8" font-size="9" text-anchor="end">₹0 / ₹25,000</text>
+      <rect x="0" y="18" width="245" height="4" rx="2" fill="#132a2e"/>
+
+      <!-- Item 2 -->
+      <text x="0" y="45" fill="#e2e8f0" font-size="10">🛍️ Shopping</text>
+      <text x="245" y="45" fill="#94a3b8" font-size="9" text-anchor="end">₹0 / ₹15,000</text>
+      <rect x="0" y="53" width="245" height="4" rx="2" fill="#132a2e"/>
+
+      <!-- Item 3 -->
+      <text x="0" y="80" fill="#e2e8f0" font-size="10">🚗 Transport</text>
+      <text x="245" y="80" fill="#94a3b8" font-size="9" text-anchor="end">₹0 / ₹10,000</text>
+      <rect x="0" y="88" width="245" height="4" rx="2" fill="#132a2e"/>
+
+      <!-- Item 4 -->
+      <text x="0" y="115" fill="#e2e8f0" font-size="10">🎬 Entertainment</text>
+      <text x="245" y="115" fill="#94a3b8" font-size="9" text-anchor="end">₹0 / ₹8,000</text>
+      <rect x="0" y="123" width="245" height="4" rx="2" fill="#132a2e"/>
+
+      <!-- Item 5 -->
+      <text x="0" y="150" fill="#e2e8f0" font-size="10">💪 Health &amp; Fitness</text>
+      <text x="245" y="150" fill="#94a3b8" font-size="9" text-anchor="end">₹0 / ₹7,000</text>
+      <rect x="0" y="158" width="245" height="4" rx="2" fill="#132a2e"/>
+
+      <!-- Item 6 -->
+      <text x="0" y="185" fill="#e2e8f0" font-size="10">⚡ Bills &amp; Utilities</text>
+      <text x="245" y="185" fill="#94a3b8" font-size="9" text-anchor="end">₹0 / ₹25,000</text>
+      <rect x="0" y="193" width="245" height="4" rx="2" fill="#132a2e"/>
+    </g>
+  </g>
 </svg>

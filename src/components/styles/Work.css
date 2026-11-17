@@ -116,7 +116,8 @@
 .work-image-in {
   position: relative;
   display: block;
-  max-width: 100%;
+  width: 100%;
+  max-width: 580px;
 }
 .work-link {
   position: absolute;
@@ -136,10 +137,7 @@
   transition: 0.3s;
   opacity: 0;
 }
-.work-image a:hover {
-  color: inherit;
-}
-.work-image a:hover .work-link {
+.work-image-in:hover .work-link {
   opacity: 1;
 }
 .work-image video {
@@ -153,8 +151,17 @@
 }
 .work-image img {
   display: block;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 700;
   max-height: 350px;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.18);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+.work-image-in:hover img {
+  transform: scale(1.02);
+  box-shadow: 0 14px 45px rgba(86, 228, 211, 0.18), 0 0 1px rgba(255, 255, 255, 0.25);
 }
 .work-project-art {
   display: grid;

@@ -1,30 +1,163 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" fill="none">
   <defs>
-    <linearGradient id="bg" x1="92" y1="45" x2="1105" y2="690" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1A2340"/>
-      <stop offset="1" stop-color="#090B12"/>
+    <linearGradient id="cv-header" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b172a"/>
+      <stop offset="1" stop-color="#091322"/>
     </linearGradient>
-    <linearGradient id="box" x1="448" y1="337" x2="814" y2="573" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#6378C4"/>
-      <stop offset="1" stop-color="#34436F"/>
-    </linearGradient>
+    <filter id="cv-card-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.06"/>
+    </filter>
   </defs>
-  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
-  <circle cx="948" cy="144" r="230" fill="#91A9FF" fill-opacity=".1"/>
-  <circle cx="205" cy="600" r="240" fill="#5674DE" fill-opacity=".1"/>
-  <path d="M600 116 826 200v174c0 143-96 213-226 267-130-54-226-124-226-267V200l226-84Z" fill="#FFFFFF" fill-opacity=".045" stroke="#9DADF2" stroke-opacity=".62" stroke-width="3"/>
-  <path d="m600 155 183 68v151c0 115-72 172-183 221-111-49-183-106-183-221V223l183-68Z" stroke="#9DADF2" stroke-opacity=".22" stroke-width="2"/>
-  <rect x="416" y="255" width="368" height="214" rx="17" fill="#E8ECF8" fill-opacity=".94"/>
-  <path d="M444 295h312" stroke="#34436F" stroke-opacity=".24" stroke-width="3"/>
-  <path d="M469 333h84v84h-84z" fill="#D5DCF2"/>
-  <path d="m489 376 17 17 31-37" stroke="#566DC3" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="582" y="342" width="157" height="10" rx="5" fill="#293451" fill-opacity=".54"/>
-  <rect x="582" y="365" width="129" height="8" rx="4" fill="#293451" fill-opacity=".2"/>
-  <rect x="582" y="391" width="101" height="8" rx="4" fill="#293451" fill-opacity=".2"/>
-  <path d="M416 446h368l-27 89H443l-27-89Z" fill="url(#box)"/>
-  <path d="M443 535h314" stroke="#A9B6EA" stroke-opacity=".7" stroke-width="3"/>
-  <path d="M481 446h238l-42 29H523l-42-29Z" fill="#151B2D"/>
-  <path d="M554 480h92" stroke="#A9B6EA" stroke-opacity=".55" stroke-width="3"/>
-  <circle cx="600" cy="565" r="11" fill="#86E0C0"/>
-  <text x="600" y="622" fill="#FFFFFF" fill-opacity=".75" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" letter-spacing="5">CAST YOUR VOTE</text>
+
+  <!-- Clean Light Dashboard Background -->
+  <rect width="1200" height="700" rx="16" fill="#f8fafc"/>
+  <rect width="1200" height="700" rx="16" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Dark Navy Header Bar -->
+  <rect x="0" y="0" width="1200" height="60" fill="url(#cv-header)"/>
+  <!-- Civitas Logo -->
+  <rect x="30" y="16" width="28" height="28" rx="6" fill="#0d9488"/>
+  <text x="44" y="35" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="800" text-anchor="middle">C</text>
+  <text x="68" y="32" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" letter-spacing="1">CIVITAS</text>
+  <text x="68" y="44" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="8" font-weight="600" letter-spacing="1.5">SECURE ELECTION WORKSPACE</text>
+
+  <!-- Nav links right -->
+  <g font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#94a3b8">
+    <text x="940" y="35">Dashboard</text>
+    <text x="1040" y="35">Elections</text>
+    <text x="1130" y="35">Help</text>
+  </g>
+
+  <!-- Sub-header -->
+  <g transform="translate(60, 90)">
+    <text x="0" y="18" fill="#0d9488" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" letter-spacing="1.5">VOTER VERIFICATION</text>
+    <rect x="140" y="7" width="65" height="18" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+    <text x="172" y="20" fill="#b45309" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="700" text-anchor="middle">REQUIRED</text>
+
+    <text x="0" y="48" fill="#0f172a" font-family="'Georgia', serif" font-size="24" font-weight="700">Complete your voter profile</text>
+    <text x="0" y="68" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="12">These details help verify your voter identity. Your full Aadhaar number is never stored.</text>
+  </g>
+
+  <!-- Left Vertical Stepper -->
+  <g transform="translate(60, 190)">
+    <!-- Step 1 (Completed) -->
+    <circle cx="20" cy="20" r="14" fill="#0d9488"/>
+    <text x="20" y="25" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">✓</text>
+    <text x="45" y="18" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="700">Personal Details</text>
+    <text x="45" y="32" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="10">Basic information</text>
+    <line x1="20" y1="42" x2="20" y2="82" stroke="#cbd5e1" stroke-width="2"/>
+
+    <!-- Step 2 -->
+    <circle cx="20" cy="95" r="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="20" y="100" fill="#64748b" font-size="12" font-weight="700" text-anchor="middle">2</text>
+    <text x="45" y="93" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600">Identity Verification</text>
+    <text x="45" y="107" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">AADHAAR verification</text>
+    <line x1="20" y1="117" x2="20" y2="157" stroke="#cbd5e1" stroke-width="2"/>
+
+    <!-- Step 3 -->
+    <circle cx="20" cy="170" r="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="20" y="175" fill="#64748b" font-size="12" font-weight="700" text-anchor="middle">3</text>
+    <text x="45" y="168" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600">Review &amp; Confirm</text>
+    <text x="45" y="182" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">Check your details</text>
+    <line x1="20" y1="192" x2="20" y2="232" stroke="#cbd5e1" stroke-width="2"/>
+
+    <!-- Step 4 -->
+    <circle cx="20" cy="245" r="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="20" y="250" fill="#64748b" font-size="12" font-weight="700" text-anchor="middle">4</text>
+    <text x="45" y="243" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="600">Complete</text>
+    <text x="45" y="257" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="10">You're all set!</text>
+  </g>
+
+  <!-- Center Form Card -->
+  <g transform="translate(290, 180)">
+    <rect width="550" height="490" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#cv-card-shadow)"/>
+
+    <!-- Card Header -->
+    <rect x="25" y="20" width="30" height="30" rx="8" fill="#ccfbf1"/>
+    <text x="40" y="40" fill="#0d9488" font-size="15" text-anchor="middle">👤</text>
+    <text x="68" y="32" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="700">Personal details</text>
+    <text x="68" y="47" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="10">Use the name and contact details linked to your voter identity (Aadhaar).</text>
+
+    <!-- Form Row 1: Email & Name -->
+    <text x="25" y="85" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">Verified email</text>
+    <rect x="25" y="95" width="240" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="45" y="119" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="12">✉️ prince@example.com</text>
+    <text x="245" y="119" fill="#0d9488" font-size="12" font-weight="700">✓</text>
+
+    <text x="285" y="85" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">Full name (as per Aadhaar)</text>
+    <rect x="285" y="95" width="240" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="305" y="119" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="12">👤 Prince Rajak</text>
+
+    <!-- Form Row 2: Mobile & DOB -->
+    <text x="25" y="160" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">Mobile number</text>
+    <rect x="25" y="170" width="240" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="45" y="194" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="12">📞 +91 98765 43210</text>
+
+    <text x="285" y="160" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">Date of birth</text>
+    <rect x="285" y="170" width="240" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="305" y="194" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="12">📅 15-08-2002</text>
+
+    <!-- Form Row 3: Gender -->
+    <text x="25" y="235" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">Gender</text>
+    <rect x="25" y="245" width="500" height="38" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="45" y="269" fill="#0f172a" font-family="'Segoe UI', sans-serif" font-size="12">Male</text>
+    <text x="505" y="269" fill="#64748b" font-size="10">▼</text>
+
+    <!-- Form Row 4: Address -->
+    <text x="25" y="310" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">Address</text>
+    <rect x="25" y="320" width="500" height="70" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="45" y="345" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="12">Enter your complete address as per voter identity card...</text>
+
+    <!-- Next Button -->
+    <rect x="25" y="415" width="500" height="44" rx="8" fill="#0d9488"/>
+    <text x="275" y="442" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" text-anchor="middle">CONTINUE TO VERIFICATION →</text>
+  </g>
+
+  <!-- Right Security Info Card -->
+  <g transform="translate(865, 180)">
+    <rect width="275" height="490" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#cv-card-shadow)"/>
+    <!-- Top Green Banner -->
+    <rect x="18" y="18" width="239" height="52" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+    <circle cx="42" cy="44" r="12" fill="#22c55e" fill-opacity="0.2"/>
+    <text x="42" y="49" fill="#15803d" font-size="13" text-anchor="middle">🛡</text>
+    <text x="66" y="38" fill="#166534" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700">Your vote. A stronger tomorrow.</text>
+    <text x="66" y="52" fill="#15803d" font-family="'Segoe UI', sans-serif" font-size="9">Secure. Transparent. Accessible.</text>
+
+    <!-- Security Points -->
+    <g transform="translate(20, 95)" font-family="'Segoe UI', sans-serif">
+      <text x="0" y="0" fill="#0f172a" font-size="13" font-weight="700">Your information is safe</text>
+
+      <g transform="translate(0, 25)">
+        <circle cx="12" cy="12" r="10" fill="#f1f5f9"/>
+        <text x="12" y="16" fill="#0d9488" font-size="10" text-anchor="middle">🔒</text>
+        <text x="32" y="10" fill="#0f172a" font-size="11" font-weight="700">End-to-end encryption</text>
+        <text x="32" y="24" fill="#64748b" font-size="9">Protected with industry standard crypto.</text>
+      </g>
+
+      <g transform="translate(0, 65)">
+        <circle cx="12" cy="12" r="10" fill="#f1f5f9"/>
+        <text x="12" y="16" fill="#0d9488" font-size="10" text-anchor="middle">👁‍🗨</text>
+        <text x="32" y="10" fill="#0f172a" font-size="11" font-weight="700">Aadhaar number not stored</text>
+        <text x="32" y="24" fill="#64748b" font-size="9">Only verify identity; no raw data saved.</text>
+      </g>
+
+      <g transform="translate(0, 105)">
+        <circle cx="12" cy="12" r="10" fill="#f1f5f9"/>
+        <text x="12" y="16" fill="#0d9488" font-size="10" text-anchor="middle">👥</text>
+        <text x="32" y="10" fill="#0f172a" font-size="11" font-weight="700">Used only for verification</text>
+        <text x="32" y="24" fill="#64748b" font-size="9">Solely to verify voter eligibility.</text>
+      </g>
+
+      <g transform="translate(0, 145)">
+        <circle cx="12" cy="12" r="10" fill="#f1f5f9"/>
+        <text x="12" y="16" fill="#0d9488" font-size="10" text-anchor="middle">⚖️</text>
+        <text x="32" y="10" fill="#0f172a" font-size="11" font-weight="700">Complies with election laws</text>
+        <text x="32" y="24" fill="#64748b" font-size="9">Built to meet Election Commission norms.</text>
+      </g>
+    </g>
+
+    <!-- Quote -->
+    <text x="137" y="440" fill="#94a3b8" font-family="'Georgia', serif" font-size="11" font-style="italic" text-anchor="middle">"Fair elections build stronger communities."</text>
+    <text x="137" y="460" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" text-anchor="middle">— CIVITAS</text>
+  </g>
 </svg>

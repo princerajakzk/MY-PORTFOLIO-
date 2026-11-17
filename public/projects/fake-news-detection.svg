@@ -1,42 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" fill="none">
   <defs>
-    <linearGradient id="bg" x1="120" y1="50" x2="1050" y2="690" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#241735"/>
-      <stop offset="1" stop-color="#0B0A10"/>
+    <linearGradient id="tl-bg" x1="0" y1="0" x2="1200" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070913"/>
+      <stop offset="0.5" stop-color="#0a0d1e"/>
+      <stop offset="1" stop-color="#05060d"/>
     </linearGradient>
-    <linearGradient id="panel" x1="270" y1="150" x2="900" y2="570" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#211B2C"/>
-      <stop offset="1" stop-color="#13111A"/>
+    <linearGradient id="tl-btn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#a855f7"/>
     </linearGradient>
+    <linearGradient id="tl-card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop stop-color="#12172a" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0c1020" stop-opacity="0.95"/>
+    </linearGradient>
+    <filter id="tl-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
   </defs>
-  <path fill="url(#bg)" d="M0 0h1200v700H0z"/>
-  <circle cx="975" cy="112" r="220" fill="#A879FF" fill-opacity=".12"/>
-  <circle cx="201" cy="626" r="240" fill="#7852D6" fill-opacity=".1"/>
-  <rect x="194" y="106" width="812" height="488" rx="26" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity=".14" stroke-width="2"/>
-  <rect x="194" y="106" width="812" height="62" rx="26" fill="#FFFFFF" fill-opacity=".035"/>
-  <circle cx="231" cy="137" r="7" fill="#FF7D9B"/>
-  <circle cx="256" cy="137" r="7" fill="#FFC66D"/>
-  <circle cx="281" cy="137" r="7" fill="#7EE0B8"/>
-  <rect x="246" y="211" width="421" height="324" rx="14" fill="#0E0D13" stroke="#FFFFFF" stroke-opacity=".1"/>
-  <rect x="276" y="241" width="134" height="14" rx="7" fill="#A879FF"/>
-  <rect x="276" y="278" width="344" height="10" rx="5" fill="#FFFFFF" fill-opacity=".78"/>
-  <rect x="276" y="301" width="315" height="8" rx="4" fill="#FFFFFF" fill-opacity=".26"/>
-  <rect x="276" y="326" width="348" height="8" rx="4" fill="#FFFFFF" fill-opacity=".26"/>
-  <rect x="276" y="351" width="285" height="8" rx="4" fill="#FFFFFF" fill-opacity=".26"/>
-  <rect x="276" y="399" width="333" height="8" rx="4" fill="#FFFFFF" fill-opacity=".16"/>
-  <rect x="276" y="424" width="301" height="8" rx="4" fill="#FFFFFF" fill-opacity=".16"/>
-  <rect x="276" y="449" width="327" height="8" rx="4" fill="#FFFFFF" fill-opacity=".16"/>
-  <rect x="276" y="486" width="126" height="28" rx="14" fill="#A879FF" fill-opacity=".16" stroke="#A879FF" stroke-opacity=".55"/>
-  <text x="292" y="505" fill="#D9C5FF" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2">ARTICLE ANALYSIS</text>
-  <rect x="698" y="211" width="263" height="324" rx="14" fill="#17141E" stroke="#FFFFFF" stroke-opacity=".1"/>
-  <circle cx="829" cy="329" r="67" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="14"/>
-  <path d="M829 262a67 67 0 0 1 62 42" stroke="#F28C8C" stroke-width="14" stroke-linecap="round"/>
-  <path d="M891 304a67 67 0 0 1-19 76" stroke="#A879FF" stroke-width="14" stroke-linecap="round"/>
-  <path d="M872 380a67 67 0 0 1-82 7" stroke="#65D6AE" stroke-width="14" stroke-linecap="round"/>
-  <text x="829" y="326" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" letter-spacing="2">CHECK</text>
-  <text x="829" y="347" fill="#A879FF" font-family="Arial,sans-serif" font-size="16" font-weight="700" text-anchor="middle" letter-spacing="1">CLAIMS</text>
-  <rect x="742" y="425" width="175" height="48" rx="24" fill="#F28C8C" fill-opacity=".12" stroke="#F28C8C" stroke-opacity=".5"/>
-  <circle cx="768" cy="449" r="6" fill="#F28C8C"/>
-  <text x="785" y="454" fill="#FFC4CB" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2">REVIEW RESULT</text>
-  <text x="244" y="568" fill="#FFFFFF" fill-opacity=".36" font-family="Arial,sans-serif" font-size="12" letter-spacing="4">SIGNAL / VERIFY / INSIGHT</text>
+
+  <!-- Background -->
+  <rect width="1200" height="700" rx="16" fill="url(#tl-bg)"/>
+  <rect width="1200" height="700" rx="16" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+
+  <!-- Star particles -->
+  <circle cx="140" cy="120" r="1.5" fill="#38bdf8" opacity="0.6"/>
+  <circle cx="280" cy="80" r="1" fill="#fff" opacity="0.4"/>
+  <circle cx="1020" cy="140" r="1.5" fill="#a855f7" opacity="0.5"/>
+  <circle cx="1120" cy="280" r="1" fill="#fff" opacity="0.3"/>
+  <circle cx="80" cy="480" r="1.5" fill="#38bdf8" opacity="0.5"/>
+  <circle cx="1060" cy="560" r="2" fill="#38bdf8" opacity="0.4"/>
+
+  <!-- Top Navbar -->
+  <rect x="0" y="0" width="1200" height="64" fill="#090d1c" fill-opacity="0.75" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Logo Icon -->
+  <rect x="36" y="16" width="32" height="32" rx="8" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1.5"/>
+  <path d="M52 23 L44 26 L44 33 C44 38 52 41 52 41 C52 41 60 38 60 33 L60 26 Z" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Brand Text -->
+  <text x="80" y="34" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" letter-spacing="0.5">TruthLine</text>
+  <text x="80" y="47" fill="#64748b" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" letter-spacing="1.5">AI VERIFICATION ENGINE</text>
+
+  <!-- Nav Status Badges -->
+  <rect x="380" y="18" width="130" height="28" rx="14" fill="#131b2e" stroke="rgba(56,189,248,0.2)"/>
+  <circle cx="396" cy="32" r="3" fill="#38bdf8"/>
+  <text x="408" y="36" fill="#94a3b8" font-family="monospace" font-size="11">SENSEX 82,532</text>
+
+  <rect x="526" y="18" width="105" height="28" rx="14" fill="#131b2e" stroke="rgba(255,255,255,0.06)"/>
+  <text x="546" y="36" fill="#facc15" font-family="monospace" font-size="11">☀️ 17.2°C</text>
+
+  <rect x="646" y="18" width="105" height="28" rx="14" fill="#131b2e" stroke="rgba(255,255,255,0.06)"/>
+  <text x="664" y="36" fill="#94a3b8" font-family="monospace" font-size="11">⏱ 22:52:34</text>
+
+  <rect x="1080" y="16" width="84" height="32" rx="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)"/>
+  <text x="1104" y="36" fill="#cbd5e1" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600">SIGN IN</text>
+
+  <!-- Center Earth Visualization -->
+  <g transform="translate(600, 220)">
+    <!-- Orbital Rings -->
+    <ellipse cx="0" cy="0" rx="200" ry="60" fill="none" stroke="rgba(56,189,248,0.2)" stroke-width="1.2" stroke-dasharray="4 6"/>
+    <ellipse cx="0" cy="0" rx="160" ry="48" fill="none" stroke="rgba(168,85,247,0.25)" stroke-width="1"/>
+    <!-- Earth Globe -->
+    <circle cx="0" cy="0" r="76" fill="#0f2638" stroke="rgba(56,189,248,0.4)" stroke-width="2"/>
+    <!-- Continents silhouette -->
+    <path d="M-30 -50 Q-10 -40 0 -20 Q10 0 35 10 Q45 25 30 50 Q-10 60 -40 30 Q-60 0 -30 -50 Z" fill="#2d6a4f" opacity="0.6"/>
+    <path d="M10 -60 Q40 -50 55 -20 Q50 0 20 -10 Z" fill="#2d6a4f" opacity="0.5"/>
+    <line x1="0" y1="-76" x2="0" y2="76" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.8"/>
+    <!-- Central Index readout -->
+    <rect x="-65" y="-22" width="130" height="44" rx="6" fill="#090d19" fill-opacity="0.9" stroke="rgba(56,189,248,0.5)" stroke-width="1.2"/>
+    <text x="0" y="-8" fill="#94a3b8" font-family="'Segoe UI', monospace" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="1.5">TRUTH INDEX</text>
+    <text x="0" y="12" fill="#38bdf8" font-family="'Segoe UI', monospace" font-size="16" font-weight="700" text-anchor="middle">98.4 %</text>
+  </g>
+
+  <!-- Left Card: Authenticity -->
+  <rect x="220" y="120" width="170" height="210" rx="14" fill="url(#tl-card)" stroke="rgba(34,197,94,0.3)" stroke-width="1.5"/>
+  <circle cx="245" cy="148" r="5" fill="#22c55e"/>
+  <text x="258" y="152" fill="#22c55e" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1">TRUE</text>
+  <rect x="350" y="136" width="24" height="24" rx="6" fill="#22c55e" fill-opacity="0.15"/>
+  <text x="357" y="153" fill="#22c55e" font-size="13">✓</text>
+  <text x="305" y="195" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" text-anchor="middle" letter-spacing="1.2">AUTHENTICITY</text>
+  <text x="305" y="235" fill="#22c55e" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="700" text-anchor="middle">HIGH</text>
+  <rect x="245" y="280" width="120" height="5" rx="2.5" fill="#1e293b"/>
+  <rect x="245" y="280" width="105" height="5" rx="2.5" fill="#22c55e"/>
+
+  <!-- Right Card: Fabrication -->
+  <rect x="810" y="120" width="170" height="210" rx="14" fill="url(#tl-card)" stroke="rgba(239,68,68,0.3)" stroke-width="1.5"/>
+  <circle cx="835" cy="148" r="5" fill="#ef4444"/>
+  <text x="848" y="152" fill="#ef4444" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1">FAKE</text>
+  <rect x="940" y="136" width="24" height="24" rx="6" fill="#ef4444" fill-opacity="0.15"/>
+  <text x="947" y="153" fill="#ef4444" font-size="13">✕</text>
+  <text x="895" y="195" fill="#64748b" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" text-anchor="middle" letter-spacing="1.2">FABRICATION</text>
+  <text x="895" y="235" fill="#ef4444" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="700" text-anchor="middle">LOW</text>
+  <rect x="835" y="280" width="120" height="5" rx="2.5" fill="#1e293b"/>
+  <rect x="835" y="280" width="22" height="5" rx="2.5" fill="#ef4444"/>
+
+  <!-- Bottom Panel: Integrity Payload -->
+  <rect x="220" y="375" width="760" height="280" rx="16" fill="url(#tl-card)" stroke="rgba(56,189,248,0.25)" stroke-width="1.5"/>
+  <circle cx="248" cy="406" r="4.5" fill="#38bdf8"/>
+  <text x="262" y="410" fill="#e2e8f0" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">INTEGRITY PAYLOAD</text>
+  <text x="920" y="410" fill="#64748b" font-family="monospace" font-size="11">0 / 3000</text>
+
+  <!-- Input Area Mockup -->
+  <rect x="245" y="435" width="710" height="110" rx="10" fill="#090d18" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="265" y="475" fill="#475569" font-family="'Segoe UI', sans-serif" font-size="14">Paste headline, article text, or URL to verify credibility with live AI...</text>
+
+  <!-- Analyze Button -->
+  <rect x="245" y="565" width="710" height="52" rx="12" fill="url(#tl-btn)" filter="url(#tl-glow)"/>
+  <text x="600" y="598" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="700" text-anchor="middle" letter-spacing="1">⚡ ANALYZE WITH AI</text>
 </svg>
