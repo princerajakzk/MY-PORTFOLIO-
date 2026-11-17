@@ -153,15 +153,17 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1200 / 700;
-  max-height: 350px;
+  aspect-ratio: 16 / 9;
+  max-height: 360px;
+  object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.2);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
 }
 .work-image-in:hover img {
-  transform: scale(1.02);
-  box-shadow: 0 14px 45px rgba(86, 228, 211, 0.18), 0 0 1px rgba(255, 255, 255, 0.25);
+  transform: scale(1.025);
+  box-shadow: 0 16px 50px rgba(86, 228, 211, 0.22), 0 0 1px rgba(255, 255, 255, 0.35);
 }
 .work-project-art {
   display: grid;
