@@ -22,10 +22,23 @@ const WorkImage = (props: Props) => {
         if (!response.ok) return;
         const blob = await response.blob();
         const blobUrl = URL.createObjectURL(blob);
-        setVideo(blobUrl);
+        setVideo((prev) => {
+          // Revoke previous blob URL to avoid memory leak
+          if (prev) URL.revokeObjectURL(prev);
+          return blobUrl;
+        });
       } catch (e) {
         console.warn("Could not load preview video", e);
       }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsVideo(false);
+    // Revoke blob URL when mouse leaves to free memory
+    if (video) {
+      URL.revokeObjectURL(video);
+      setVideo("");
     }
   };
 
@@ -71,7 +84,7 @@ const WorkImage = (props: Props) => {
           className="work-image-in"
           href={props.link}
           onMouseEnter={handleMouseEnter}
-          onMouseLeave={() => setIsVideo(false)}
+          onMouseLeave={handleMouseLeave}
           target="_blank"
           rel="noreferrer"
           data-cursor="disable"

@@ -136,12 +136,14 @@ const TechStack = () => {
   }, []);
 
   useEffect(() => {
+    let mounted = true;
     let ticking = false;
     const handleScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         ticking = false;
+        if (!mounted) return;
         const workElem = document.getElementById("work");
         if (!workElem) return;
         const scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -155,6 +157,7 @@ const TechStack = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => {
+      mounted = false;
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -172,6 +175,12 @@ const TechStack = () => {
         })
     );
   }, []);
+
+  // Assign materials to spheres once, stably — avoids texture flicker on re-renders
+  const sphereMaterials = useMemo(
+    () => spheres.map((_, i) => materials[i % materials.length]),
+    [materials]
+  );
 
   return (
     <div className="techstack">
@@ -207,7 +216,7 @@ const TechStack = () => {
             <SphereGeo
               key={i}
               {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
+              material={sphereMaterials[i]}
               isActive={isActive}
             />
           ))}

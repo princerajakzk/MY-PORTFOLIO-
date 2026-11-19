@@ -179,7 +179,9 @@ const Scene = () => {
     };
 
     const onTouchEnd = () => {
+      if (cancelled) return;
       handleTouchEnd((x, y, interpolationX, interpolationY) => {
+        if (cancelled) return;
         mouse.x = x;
         mouse.y = y;
         interpolation.x = interpolationX;
@@ -243,6 +245,7 @@ const Scene = () => {
       cancelled = true;
       clearTimeout(debounce);
       window.clearTimeout(charLoadTimer);
+      progress.clear(); // stop the fake-progress interval so it doesn't fire after unmount
       scene.clear();
       renderer.dispose();
       window.removeEventListener("resize", handleResizeListener);

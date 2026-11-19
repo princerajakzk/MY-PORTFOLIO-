@@ -76,5 +76,7 @@ export default function setSplitText() {
     );
   });
 
-  ScrollTrigger.addEventListener("refresh", () => setSplitText());
+  // Note: do NOT re-register "refresh" listener here — setSplitText is already
+  // called by the resize handler in MainContainer, so re-registering on every
+  // call would create an ever-growing chain of listeners causing infinite loops.
 }

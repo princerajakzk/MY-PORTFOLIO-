@@ -135,7 +135,7 @@ function App(){
   const MB=window.innerWidth<700,r=new THREE.WebGLRenderer({antialias:!MB,alpha:true,powerPreference:"high-performance"});let pr=Math.min(window.devicePixelRatio,MB?1.25:1.5);
   r.setPixelRatio(pr);el.appendChild(r.domElement);
   const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,400),grp=new THREE.Group();sc.add(grp);
-  const N=MB?1000:1800,M=MB?240:420,RM=15;
+  const N=MB?700:1200,M=MB?180:280,RM=15;
   const dir=new Float32Array(N*3),tr=new Float32Array(N),sr=new Float32Array(N),sp=new Float32Array(N),pos=new Float32Array(N*3),
    col=new Float32Array(N*3),sz=new Float32Array(N),ab=new Float32Array(N),al=new Float32Array(N);
   const pal=["#35e0ff","#35e0ff","#a855f7","#ffffff","#4f7dff"].map(c=>new THREE.Color(c));
@@ -231,17 +231,17 @@ function App(){
  useEffect(()=>{
   if(!go)return;const s=S.current;s.phase="loading";s.prog=0;s.burst=0;s.age=0;setPhase("loading");setPct(0);s.t0=performance.now();SND.did.w=0;SND.did.b=0;SND.pad(false);const st=setTimeout(()=>{SND.init();if(!SND.did.w&&s.phase==="loading")SND.whoosh(5.1,.5/5.6)},500);let ls=-1,lp=-1;
   // Cache DOM refs for direct updates — avoids React reconciliation on every % tick
-  const _bar=document.querySelector(".bar b"),_pct=document.querySelector(".pct"),_sub=document.querySelector(".sub"),_sl=document.querySelector(".sl"),_pg=document.querySelector(".pg");
+  let _bar=document.querySelector(".bar b"),_pct=document.querySelector(".pct"),_sub=document.querySelector(".sub"),_sl=document.querySelector(".sl"),_pg=document.querySelector(".pg");
   let raf,tm,el=0,last=performance.now();
   const tick=n=>{
    const dtm=Math.max(0,Math.min(n-last,34));last=n;el+=dtm;s.el=el;const t=Math.min(el/5600,1),e=Math.pow(t,1.5);
    s.prog=e;const pv=Math.round(t*100);if(pv!==lp){lp=pv;
     // Direct DOM update: zero React reconciliation cost during the critical 0-6s window
-    if(_bar)_bar.style.width=pv+"%";
-    if(_pct)_pct.textContent=String(pv).padStart(3,"0")+"%";
-    const si=Math.min(4,Math.floor(t*100/21));if(si!==ls){ls=si;if(_sub){_sub.textContent=STAGES[si];_sub.className="sub"+(pv>=84?" ok":"");}SND.blip(480+si*160)}
-    const op=Math.pow(pv/100,1.5)*.9;if(_sl)_sl.style.opacity=op;
-    const sc2=.06+Math.pow(pv/100,4)*.94,op2=.25+.75*Math.pow(pv/100,2);if(_pg){_pg.style.transform="translate(-50%,-50%) scale("+sc2+")";_pg.style.opacity=op2;}
+    if(!_bar)_bar=document.querySelector(".bar b");if(_bar)_bar.style.width=pv+"%";
+    if(!_pct)_pct=document.querySelector(".pct");if(_pct)_pct.textContent=String(pv).padStart(3,"0")+"%";
+    const si=Math.min(4,Math.floor(t*100/21));if(si!==ls){ls=si;if(!_sub)_sub=document.querySelector(".sub");if(_sub){_sub.textContent=STAGES[si];_sub.className="sub"+(pv>=84?" ok":"");}SND.blip(480+si*160)}
+    const op=Math.pow(pv/100,1.5)*.9;if(!_sl)_sl=document.querySelector(".sl");if(_sl)_sl.style.opacity=op;
+    const sc2=.06+Math.pow(pv/100,4)*.94,op2=.25+.75*Math.pow(pv/100,2);if(!_pg)_pg=document.querySelector(".pg");if(_pg){_pg.style.transform="translate(-50%,-50%) scale("+sc2+")";_pg.style.opacity=op2;}
    }
    if(t<1)raf=requestAnimationFrame(tick);
    else{s.animating=false;s.phase="burst";setPhase("burst");SND.boom();tm=setTimeout(()=>{setPhase("welcome");SND.pad(true)},1300)}

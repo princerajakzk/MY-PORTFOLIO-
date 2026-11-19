@@ -24,10 +24,11 @@ const Navbar = () => {
     currentSmoother.scrollTop(0);
     currentSmoother.paused(true);
 
+    const clickCleanups: Array<() => void> = [];
     const links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
       const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
+      const handleClick = (e: MouseEvent) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
           const currentLink = e.currentTarget as HTMLAnchorElement;
@@ -36,7 +37,9 @@ const Navbar = () => {
             smoother.scrollTo(section, true, "top top");
           }
         }
-      });
+      };
+      element.addEventListener("click", handleClick);
+      clickCleanups.push(() => element.removeEventListener("click", handleClick));
     });
     const onResize = () => {
       ScrollSmoother.refresh(true);
@@ -45,6 +48,9 @@ const Navbar = () => {
 
     return () => {
       window.removeEventListener("resize", onResize);
+      clickCleanups.forEach((cleanup) => cleanup());
+      currentSmoother.kill();
+      setSmoother(undefined);
     };
   }, []);
   return (
