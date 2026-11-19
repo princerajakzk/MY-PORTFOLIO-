@@ -3,6 +3,7 @@ import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   BallCollider,
   Physics,
@@ -27,7 +28,7 @@ const textures = imageUrls.map((url) => textureLoader.load(url));
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
 const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+  scale: [1.8, 2.2, 1.9, 2.4, 2.1][Math.floor(Math.random() * 5)],
 }));
 
 type SphereProps = {
@@ -55,9 +56,9 @@ function SphereGeo({
       .normalize()
       .multiply(
         new THREE.Vector3(
-          -50 * delta * scale,
-          -150 * delta * scale,
-          -50 * delta * scale
+          -40 * delta * scale,
+          -120 * delta * scale,
+          -40 * delta * scale
         )
       );
 
@@ -69,7 +70,7 @@ function SphereGeo({
       linearDamping={0.75}
       angularDamping={0.15}
       friction={0.2}
-      position={[r(20), r(20) - 25, r(20) - 10]}
+      position={[r(28), r(20) - 20, r(15) - 8]}
       ref={api}
       colliders={false}
     >
@@ -119,7 +120,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
       colliders={false}
       ref={ref}
     >
-      <BallCollider args={[2]} />
+      <BallCollider args={[3]} />
     </RigidBody>
   );
 }
@@ -128,12 +129,17 @@ const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    ScrollTrigger.refresh();
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
+      const workElem = document.getElementById("work");
+      if (!workElem) return;
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const rect = workElem.getBoundingClientRect();
+      const threshold = rect.top + scrollY;
+      setIsActive(scrollY > threshold - window.innerHeight * 0.5);
     };
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
@@ -173,20 +179,20 @@ const TechStack = () => {
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+        camera={{ position: [0, 0, 18], fov: 34, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
       >
-        <ambientLight intensity={1} />
+        <ambientLight intensity={1.2} />
         <spotLight
           position={[20, 20, 25]}
           penumbra={1}
-          angle={0.2}
+          angle={0.25}
           color="white"
           castShadow
           shadow-mapSize={[512, 512]}
         />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
+        <directionalLight position={[0, 5, -4]} intensity={2.2} />
         <Physics gravity={[0, 0, 0]}>
           <Pointer isActive={isActive} />
           {spheres.map((props, i) => (
@@ -200,11 +206,11 @@ const TechStack = () => {
         </Physics>
         <Environment
           files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
+          environmentIntensity={0.6}
           environmentRotation={[0, 4, 2]}
         />
         <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
+          <N8AO color="#0f002c" aoRadius={3} intensity={1.2} />
         </EffectComposer>
       </Canvas>
     </div>

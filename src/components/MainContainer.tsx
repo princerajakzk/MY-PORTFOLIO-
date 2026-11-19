@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
+import TechStackErrorBoundary from "./TechStackErrorBoundary";
 import setSplitText from "./utils/splitText";
 import { useLoading } from "../context/useLoading";
 
@@ -57,9 +58,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <Career />
             <Work />
             {isDesktopView && loadTechStack && (
-              <Suspense fallback={<div>Loading....</div>}>
-                <TechStack />
-              </Suspense>
+              <TechStackErrorBoundary>
+                <Suspense fallback={null}>
+                  <TechStack />
+                </Suspense>
+              </TechStackErrorBoundary>
             )}
             <Contact />
           </div>
