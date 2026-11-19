@@ -136,26 +136,24 @@ const TechStack = () => {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const workElem = document.getElementById("work");
-      if (!workElem) return;
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const rect = workElem.getBoundingClientRect();
-      const threshold = rect.top + scrollY;
-      setIsActive(scrollY > threshold - window.innerHeight * 0.5);
-    };
-    document.querySelectorAll(".header a").forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const workElem = document.getElementById("work");
+        if (!workElem) return;
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const rect = workElem.getBoundingClientRect();
+        const threshold = rect.top + scrollY;
+        const nextActive = scrollY > threshold - window.innerHeight * 0.5;
+        setIsActive((prev) => (prev !== nextActive ? nextActive : prev));
       });
-    });
-    window.addEventListener("scroll", handleScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -180,8 +178,15 @@ const TechStack = () => {
       <h2> My Techstack</h2>
 
       <Canvas
+        dpr={[1, 1.5]}
         shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+        gl={{
+          alpha: true,
+          stencil: false,
+          depth: false,
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
@@ -212,7 +217,7 @@ const TechStack = () => {
           environmentIntensity={0.55}
           environmentRotation={[0, 4, 2]}
         />
-        <EffectComposer enableNormalPass={false}>
+        <EffectComposer enableNormalPass={false} multisampling={0}>
           <N8AO color="#0f002c" aoRadius={1.5} intensity={1.15} />
         </EffectComposer>
       </Canvas>

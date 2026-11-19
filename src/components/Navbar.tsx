@@ -38,9 +38,14 @@ const Navbar = () => {
         }
       });
     });
-    window.addEventListener("resize", () => {
+    const onResize = () => {
       ScrollSmoother.refresh(true);
-    });
+    };
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
   return (
     <>

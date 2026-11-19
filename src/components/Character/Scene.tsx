@@ -40,9 +40,10 @@ const Scene = () => {
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
+      powerPreference: "high-performance",
     });
     renderer.setSize(container.width, container.height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
     canvasElement.innerHTML = "";
@@ -202,6 +203,11 @@ const Scene = () => {
       requestAnimationFrame(animate);
 
       if (!introDismissed) {
+        return;
+      }
+
+      // Pause character rendering when scrolled down to Career/Work/TechStack to save GPU and prevent lag
+      if (window.scrollY > window.innerHeight * 2.8) {
         return;
       }
 
