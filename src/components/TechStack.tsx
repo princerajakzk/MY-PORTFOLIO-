@@ -28,7 +28,7 @@ const textures = imageUrls.map((url) => textureLoader.load(url));
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
 const spheres = [...Array(30)].map(() => ({
-  scale: [0.95, 1.15, 1.05, 1.2, 1.1][Math.floor(Math.random() * 5)],
+  scale: [0.85, 1.0, 0.9, 1.05, 0.95][Math.floor(Math.random() * 5)],
 }));
 
 type SphereProps = {
@@ -120,7 +120,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
       colliders={false}
       ref={ref}
     >
-      <BallCollider args={[1.8]} />
+      <BallCollider args={[1.5]} />
     </RigidBody>
   );
 }
@@ -210,7 +210,7 @@ const TechStack = () => {
           environmentRotation={[0, 4, 2]}
         />
         <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={1.8} intensity={1.15} />
+          <N8AO color="#0f002c" aoRadius={1.5} intensity={1.15} />
         </EffectComposer>
       </Canvas>
     </div>
