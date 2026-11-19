@@ -78,13 +78,15 @@ const Work = () => {
                   <div className="work-info">
                     <div className="work-title">
                       <h3>{String(index + 1).padStart(2, "0")}</h3>
-                      <div>
+                      <div className="work-details">
                         <h4>{project.title}</h4>
                         <p>{project.category}</p>
+                        <div className="work-tools">
+                          <h4>Tools and features</h4>
+                          <p>{project.tools}</p>
+                        </div>
                       </div>
                     </div>
-                    <h4>Tools and features</h4>
-                    <p>{project.tools}</p>
                   </div>
                   <WorkImage
                     image={project.image}
