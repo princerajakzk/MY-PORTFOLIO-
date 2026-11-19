@@ -47,30 +47,38 @@ function SphereGeo({
   isActive,
 }: SphereProps) {
   const api = useRef<RapierRigidBody | null>(null);
+  const target = useMemo(() => new THREE.Vector3(0, -2.8, 0), []);
 
   useFrame((_state, delta) => {
-    if (!isActive) return;
+    if (!isActive || !api.current) return;
     delta = Math.min(0.1, delta);
+    const pos = api.current.translation();
     const impulse = vec
-      .copy(api.current!.translation())
+      .copy(pos)
+      .sub(target)
       .normalize()
       .multiply(
         new THREE.Vector3(
-          -45 * delta * scale,
-          -135 * delta * scale,
-          -45 * delta * scale
+          -40 * delta * scale,
+          -120 * delta * scale,
+          -40 * delta * scale
         )
       );
 
-    api.current?.applyImpulse(impulse, true);
+    // Keep balls gracefully below the title text
+    if (pos.y > -0.6) {
+      impulse.y -= 70 * delta * scale;
+    }
+
+    api.current.applyImpulse(impulse, true);
   });
 
   return (
     <RigidBody
-      linearDamping={0.75}
-      angularDamping={0.15}
+      linearDamping={0.8}
+      angularDamping={0.2}
       friction={0.2}
-      position={[r(22), r(20) - 23, r(18) - 10]}
+      position={[r(24), r(16) - 22, r(16) - 8]}
       ref={api}
       colliders={false}
     >
