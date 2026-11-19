@@ -50,12 +50,14 @@ const Contact = () => {
             </a>
           </div>
           <div className="contact-box contact-box-credits">
-            <h2>
-              Designed and Developed <br /> by <span>Prince Rajak</span>
-            </h2>
-            <h5>
-              <MdCopyright /> {new Date().getFullYear()}
-            </h5>
+            <div className="contact-box-credits-in">
+              <h2>
+                Designed and Developed <br /> by <span>Prince Rajak</span>
+              </h2>
+              <h5>
+                <MdCopyright /> {new Date().getFullYear()}
+              </h5>
+            </div>
           </div>
         </div>
       </div>
