@@ -115,40 +115,46 @@ const Scene = () => {
     const progress = setProgress((value) => setLoading(value));
     const { loadCharacter } = setCharacter(renderer, scene, camera);
 
-    // Load character in background immediately so shaders, textures, and animations are ready
-    loadCharacter().then((gltf) => {
-      if (cancelled) {
-        return;
-      }
+    // Defer character loading by 1200ms so the intro animation (0-6s) has
+    // full CPU/GPU priority at startup — no shader compile or Draco decode
+    // competing with the iframe WebGL render loop during the critical first seconds.
+    const charLoadTimer = window.setTimeout(() => {
+      if (cancelled) return;
 
-      if (!gltf) {
-        setLoading(100);
-        setIsLoading(false);
-        return;
-      }
-
-      const animations = setAnimations(gltf);
-      introAnimation = animations.startIntro;
-      if (hoverDivRef.current) {
-        animations.hover(gltf, hoverDivRef.current);
-      }
-      mixer = animations.mixer;
-      const loadedModel = gltf.scene;
-      loadedCharacter = loadedModel;
-      scene.add(loadedModel);
-      headBone = loadedModel.getObjectByName("spine006") || null;
-      screenLight = loadedModel.getObjectByName("screenlight") || null;
-
-      // Precompile all shaders with full scene lighting & materials
-      renderer.compile(scene, camera);
-
-      progress.loaded().then(() => {
-        if (!cancelled) {
-          introReady = true;
-          startIntroWhenReady();
+      loadCharacter().then((gltf) => {
+        if (cancelled) {
+          return;
         }
+
+        if (!gltf) {
+          setLoading(100);
+          setIsLoading(false);
+          return;
+        }
+
+        const animations = setAnimations(gltf);
+        introAnimation = animations.startIntro;
+        if (hoverDivRef.current) {
+          animations.hover(gltf, hoverDivRef.current);
+        }
+        mixer = animations.mixer;
+        const loadedModel = gltf.scene;
+        loadedCharacter = loadedModel;
+        scene.add(loadedModel);
+        headBone = loadedModel.getObjectByName("spine006") || null;
+        screenLight = loadedModel.getObjectByName("screenlight") || null;
+
+        // Precompile all shaders with full scene lighting & materials
+        renderer.compile(scene, camera);
+
+        progress.loaded().then(() => {
+          if (!cancelled) {
+            introReady = true;
+            startIntroWhenReady();
+          }
+        });
       });
-    });
+    }, 1200);
 
     const mouse = { x: 0, y: 0 };
     const interpolation = { x: 0.08, y: 0.10 };
@@ -236,6 +242,7 @@ const Scene = () => {
     return () => {
       cancelled = true;
       clearTimeout(debounce);
+      window.clearTimeout(charLoadTimer);
       scene.clear();
       renderer.dispose();
       window.removeEventListener("resize", handleResizeListener);

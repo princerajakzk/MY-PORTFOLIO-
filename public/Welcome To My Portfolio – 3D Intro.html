@@ -128,7 +128,7 @@ const SND=(()=>{let ac=null,mg=null,mt=false,pd=null,dd={w:0,b:0};
 
 function App(){
  const [phase,setPhase]=useState("loading"),[pct,setPct]=useState(0),[run,setRun]=useState(0),[go,setGo]=useState(false),[snd,setSnd]=useState(true);
- const S=useRef({phase:"loading",prog:0,burst:0,age:0,mx:0,my:0}),mount=useRef(null);
+ const S=useRef({phase:"loading",prog:0,burst:0,age:0,mx:0,my:0,animating:true}),mount=useRef(null);
 
  useEffect(()=>{
   const s=S.current,el=mount.current,rnd=Math.random;
@@ -189,7 +189,8 @@ function App(){
   let raf,qLv=0,nA=N,mA=M,fAcc=0,fN=0,fW=0;
   // auto quality: 0 = full, 1 = medium, 2 = light. Starts lower on weak devices, steps down if FPS drops.
   const QL=[[MB?1.5:2,1,1],[1.25,.6,.6],[1,.35,.3]];
-  const applyQ=()=>{const q=QL[qLv];pr=Math.min(window.devicePixelRatio,q[0]);r.setPixelRatio(pr);size();nA=Math.floor(N*q[1]);mA=Math.floor(M*q[2]);geo.setDrawRange(0,nA);lg.setDrawRange(0,mA*2);warp.visible=qLv<2;gates.forEach((g,i)=>{g.visible=qLv<2||i%2===0});const rt=document.getElementById("root");if(rt)rt.dataset.q=qLv};
+  // animating: true while the loading bar is running (0-6s) — blocks canvas resize during this window
+  const applyQ=()=>{const q=QL[qLv];pr=Math.min(window.devicePixelRatio,q[0]);if(!s.animating){r.setPixelRatio(pr);size();}nA=Math.floor(N*q[1]);mA=Math.floor(M*q[2]);geo.setDrawRange(0,nA);lg.setDrawRange(0,mA*2);warp.visible=qLv<2;gates.forEach((g,i)=>{g.visible=qLv<2||i%2===0});const rt=document.getElementById("root");if(rt)rt.dataset.q=qLv};
   if((navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=2){qLv=1;applyQ()}
   const clock=new THREE.Clock();
   const loop=()=>{
@@ -229,12 +230,21 @@ function App(){
 
  useEffect(()=>{
   if(!go)return;const s=S.current;s.phase="loading";s.prog=0;s.burst=0;s.age=0;setPhase("loading");setPct(0);s.t0=performance.now();SND.did.w=0;SND.did.b=0;SND.pad(false);const st=setTimeout(()=>{SND.init();if(!SND.did.w&&s.phase==="loading")SND.whoosh(5.1,.5/5.6)},500);let ls=-1,lp=-1;
+  // Cache DOM refs for direct updates — avoids React reconciliation on every % tick
+  const _bar=document.querySelector(".bar b"),_pct=document.querySelector(".pct"),_sub=document.querySelector(".sub"),_sl=document.querySelector(".sl"),_pg=document.querySelector(".pg");
   let raf,tm,el=0,last=performance.now();
   const tick=n=>{
    const dtm=Math.max(0,Math.min(n-last,34));last=n;el+=dtm;s.el=el;const t=Math.min(el/5600,1),e=Math.pow(t,1.5);
-   s.prog=e;const pv=Math.round(t*100);if(pv!==lp){lp=pv;setPct(pv)}const si=Math.min(4,Math.floor(t*100/21));if(si!==ls){ls=si;SND.blip(480+si*160)}
+   s.prog=e;const pv=Math.round(t*100);if(pv!==lp){lp=pv;
+    // Direct DOM update: zero React reconciliation cost during the critical 0-6s window
+    if(_bar)_bar.style.width=pv+"%";
+    if(_pct)_pct.textContent=String(pv).padStart(3,"0")+"%";
+    const si=Math.min(4,Math.floor(t*100/21));if(si!==ls){ls=si;if(_sub){_sub.textContent=STAGES[si];_sub.className="sub"+(pv>=84?" ok":"");}SND.blip(480+si*160)}
+    const op=Math.pow(pv/100,1.5)*.9;if(_sl)_sl.style.opacity=op;
+    const sc2=.06+Math.pow(pv/100,4)*.94,op2=.25+.75*Math.pow(pv/100,2);if(_pg){_pg.style.transform="translate(-50%,-50%) scale("+sc2+")";_pg.style.opacity=op2;}
+   }
    if(t<1)raf=requestAnimationFrame(tick);
-   else{s.phase="burst";setPhase("burst");SND.boom();tm=setTimeout(()=>{setPhase("welcome");SND.pad(true)},1300)}
+   else{s.animating=false;s.phase="burst";setPhase("burst");SND.boom();tm=setTimeout(()=>{setPhase("welcome");SND.pad(true)},1300)}
   };
   raf=requestAnimationFrame(tick);
   return()=>{cancelAnimationFrame(raf);clearTimeout(tm);clearTimeout(st)};
