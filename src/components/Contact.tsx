@@ -49,7 +49,7 @@ const Contact = () => {
               Instagram <MdArrowOutward />
             </a>
           </div>
-          <div className="contact-box">
+          <div className="contact-box contact-box-credits">
             <h2>
               Designed and Developed <br /> by <span>Prince Rajak</span>
             </h2>

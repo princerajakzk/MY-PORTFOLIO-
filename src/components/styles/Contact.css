@@ -7,7 +7,7 @@
   font-size: 60px;
   font-weight: 400;
   text-transform: uppercase;
-  margin: 0;
+  margin: 0 0 35px;
 }
 .contact-flex {
   display: flex;
@@ -30,28 +30,43 @@ a.contact-social {
   font-size: 25px;
   border-bottom: 1px solid #ccc;
 }
-.contact-box h2 {
+.contact-box-credits {
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+.contact-box-credits h2 {
+  font-family: "Plus Jakarta Sans", "Geist", -apple-system, sans-serif;
   font-weight: 400;
-  font-size: 23px;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: #9d9aa8;
   margin: 0;
 }
-.contact-box h2 > span {
+.contact-box-credits h2 > span {
   color: var(--accentColor);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 16px rgba(194, 164, 255, 0.35);
 }
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
-  display: flex;
-  gap: 10px;
-  opacity: 0.5;
+.contact-box-credits h5 {
+  font-family: "Plus Jakarta Sans", "Geist", -apple-system, sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  color: #6a6876;
+  opacity: 0.85;
+  margin: 10px 0 0;
+  letter-spacing: 0.04em;
 }
 @media only screen and (max-width: 1600px) {
   .contact-section h3 {
     font-size: 50px;
-  }
-  .contact-box h2 {
-    font-size: 20px;
   }
   a.contact-social {
     font-size: 22px;
@@ -60,9 +75,6 @@ a.contact-social {
 @media only screen and (max-width: 1300px) {
   .contact-section h3 {
     font-size: 40px;
-  }
-  .contact-box h2 {
-    font-size: 18px;
   }
   a.contact-social {
     font-size: 20px;
@@ -88,5 +100,19 @@ a.contact-social {
   }
   .contact-container {
     width: calc(100% - 25px);
+  }
+  .contact-box-credits {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 10px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .contact-box-credits h2 {
+    font-size: 13px;
+  }
+  .contact-box-credits h5 {
+    justify-content: flex-start;
+    font-size: 12px;
   }
 }
