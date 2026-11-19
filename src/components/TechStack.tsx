@@ -28,7 +28,7 @@ const textures = imageUrls.map((url) => textureLoader.load(url));
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
 const spheres = [...Array(30)].map(() => ({
-  scale: [1.8, 2.2, 1.9, 2.4, 2.1][Math.floor(Math.random() * 5)],
+  scale: [1.2, 1.45, 1.3, 1.5, 1.35][Math.floor(Math.random() * 5)],
 }));
 
 type SphereProps = {
@@ -56,9 +56,9 @@ function SphereGeo({
       .normalize()
       .multiply(
         new THREE.Vector3(
-          -40 * delta * scale,
-          -120 * delta * scale,
-          -40 * delta * scale
+          -45 * delta * scale,
+          -135 * delta * scale,
+          -45 * delta * scale
         )
       );
 
@@ -70,7 +70,7 @@ function SphereGeo({
       linearDamping={0.75}
       angularDamping={0.15}
       friction={0.2}
-      position={[r(28), r(20) - 20, r(15) - 8]}
+      position={[r(22), r(20) - 23, r(18) - 10]}
       ref={api}
       colliders={false}
     >
@@ -120,7 +120,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
       colliders={false}
       ref={ref}
     >
-      <BallCollider args={[3]} />
+      <BallCollider args={[2.2]} />
     </RigidBody>
   );
 }
@@ -179,20 +179,20 @@ const TechStack = () => {
       <Canvas
         shadows
         gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 18], fov: 34, near: 1, far: 100 }}
+        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
       >
-        <ambientLight intensity={1.2} />
+        <ambientLight intensity={1.1} />
         <spotLight
           position={[20, 20, 25]}
           penumbra={1}
-          angle={0.25}
+          angle={0.22}
           color="white"
           castShadow
           shadow-mapSize={[512, 512]}
         />
-        <directionalLight position={[0, 5, -4]} intensity={2.2} />
+        <directionalLight position={[0, 5, -4]} intensity={2} />
         <Physics gravity={[0, 0, 0]}>
           <Pointer isActive={isActive} />
           {spheres.map((props, i) => (
@@ -206,11 +206,11 @@ const TechStack = () => {
         </Physics>
         <Environment
           files="/models/char_enviorment.hdr"
-          environmentIntensity={0.6}
+          environmentIntensity={0.55}
           environmentRotation={[0, 4, 2]}
         />
         <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={3} intensity={1.2} />
+          <N8AO color="#0f002c" aoRadius={2.2} intensity={1.15} />
         </EffectComposer>
       </Canvas>
     </div>
